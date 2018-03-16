@@ -641,7 +641,7 @@ var card = new PgComponentType('Bulma.card', 'Card',{
         action_menu : {
         	add: ['Bulma.cardHeader','Bulma.cardFooter'],
         	'on_add' : function(pgel, pgnew, newdef,prepend){
-        		console.log(newdef.type);
+        		
         		if(newdef.type == 'Bulma.cardHeader'){
         			pgel.prepend(pgnew);	
         		} else {
@@ -1055,7 +1055,7 @@ var tabs = new PgComponentType('Bulma.tabs', 'Tabs');
         var notification = new PgComponentType('Bulma.notification', 'notification');
         notification.selector = '.notification';
         notification.parent_selector = 'body';
-        notification.code = '<div class="notification"><button class="delete"></button>Lorem ipsum dolor sit amet, consectetur adipiscing elit lorem ipsum dolor. <strong>Pellentesque risus mi</strong>, tempus quis placerat ut, porta nec nulla. Vestibulum rhoncus ac ex sit amet fringilla. Nullam gravida purus diam, et dictum <a>felis venenatis</a> efficitur. Sit amet, consectetur adipiscing elit</div>';
+        notification.code = '<div class="notification">Contents</div>';
         notification.tags = 'major';
         notification.sections = {
             'Bulma.notification' : {
@@ -1069,6 +1069,28 @@ var tabs = new PgComponentType('Bulma.tabs', 'Tabs');
                         name: 'Notification Color',
                         options: bgColorOptions                            
                     
+                },
+                'Bulma.notification.button':{
+                	type:'checkbox',
+                	name:'Button?',
+                	value: 1,
+                	action: 'custom',
+                	get_value: function (pgel) {
+                    		return pgel.find('button.delete').length > 0 ? "1" : null;
+                    	},
+                    	set_value: function (pgel, value, values, oldValue, eventType) {
+                    		crsaWillChangeDom();
+                    		var pgb = pgel.findOne('button.delete');
+                    		if (value) {
+                    			if (!pgb) {
+                    				pgb = pgCreateNodeFromHtml('<button class="delete"></button>').html('');
+                    				pgel.prepend(pgb);
+  		            			}
+                    		} else {
+                    			pgb.remove();
+                    		}
+                    		return value;
+                    	}
                 }
             }
         }
@@ -1325,6 +1347,109 @@ var tabs = new PgComponentType('Bulma.tabs', 'Tabs');
         f.addComponentType(content);
 
 
+        // Navbar
+        var navbar = new PgComponentType('Bulma.navbar','Navbar');
+        navbar.selector = 'nav.navbar';
+        navbar.parent_selector = 'body';
+        navbar.code = '<nav class="navbar"><div class="container is-fluid"><div class="navbar-brand"><a class="navbar-item"><img src="https://bulma.io/images/bulma-type-white.png" alt="Logo"></a><span class="navbar-burger burger" data-target="navbarMenuHeroA"><span></span><span></span><span></span></span></div><div id="navbarMenuHeroA" class="navbar-menu"><div class="navbar-end"><a class="navbar-item is-active">Home</a><a class="navbar-item">Examples</a><a class="navbar-item">Documentation</a><span class="navbar-item"><a class="button is-primary is-inverted"><span class="icon"><i class="fab fa-github"></i></span><span>Download</span></a></span></div></div></div></nav>';
+        navbar.sections = {
+            'Bulma.navbar' : {
+                name : 'Navbar options',
+                fields : {
+                	'Bulma.navbar.transparent':{
+                		type:'checkbox',
+                		value:'is-transparent',
+                		action:'apply_class',
+                		name:'Transparent?'
+                	},
+                	'Bulma.navbar.fixed':{
+                		type:'select',
+                		action:'apply_class',
+                		name:'Fixed',
+                		show_empty: true,
+                		options: [
+                			{key:'is-fixed-top',name:'Fixed Top'},
+                			{key:'is-fixed-bottom',name:'Fixed Bottom'},
+                		]
+                	},
+                	'Bulma.navbar.color':{
+                		type:'select',
+                		action:'apply_class',
+                		name:'Background',
+                		toggle_buttons: true,
+                		show_empty: true,
+                		options: bgColorOptions
+                	}
+                }
+            }
+        };
+        f.addComponentType(navbar);
+
+        // navbar item
+        var navbarItem = new PgComponentType('Bulma.navbarItem','Navbar Item');
+        navbarItem.selector = '.navbar-item';
+        navbarItem.parent_selector = '.navbar .navbar-brand, .navbar-start, .navbar-end, .navbar-dropdown';
+        navbarItem.code = '<div class="navbar-item">Item</div>';
+        navbarItem.sections = {
+            'Bulma.navbarItem' : {
+                name : 'Navbar Item options',
+                fields : {
+                	'Bulma.navbarItem.display' :{
+                		type:'select',
+                		name:'Dropdown Display',
+                		action:'apply-class',
+                		show_empty: true,
+                		options: [
+                			{key:'is-hoverable',name:'Hoverable'},
+                			{key:'is-active',name:'Active'},
+                		]
+                	},
+                	'Bulma.navbarItem.dropdownDirection':{
+                		type:'checkbox',
+                		name:'Dropup?',
+                		value:'has-dropdown-up',
+                		action:'apply_class',
+                		show_if: 'has-dropdown'
+                	},
+                	'Bulma.navbarItem.state':{
+                		type:'checkbox',
+                		name:'Active?',
+                		value:'is-active',
+                		action:'apply_class',
+                		show_if: 'has-dropdown'
+                	}
+                }
+            }
+        }
+        f.addComponentType(navbarItem);
+
+        // navbar dropdown item
+        var navbarDropdown = new PgComponentType('Bulma.navbarDropdown','Navbar Dropdown');
+        navbarDropdown.selector = '.navbar-dropdown';
+        navbarDropdown.parent_selector = '.navbar-item';
+        navbarDropdown.code = '<div class="navbar-item has-dropdown"><a class="navbar-link">Item</a><div class="navbar-dropdown"><a class="navbar-item">Dropdown Item</a></div></div>';
+        navbarDropdown.sections = {
+            'Bulma.navbarDropdown' : {
+                name : 'Navbar dropdown options',
+                fields : {
+                	'Bulma.navbarDropdown.dropdownPosition':{
+                		type:'checkbox',
+                		name:'Right Dropdown?',
+                		value:'is-right',
+                		action:'apply_class'
+                	},
+                	'Bulma.navbarDropdown.boxed':{
+                		type:'checkbox',
+                		name:'Boxed dropdown?',
+                		value:'is-boxed',
+                		action:'apply_class'
+                	}
+                }
+            }
+        }
+        f.addComponentType(navbarDropdown);
+
+
 		var pagination = new PgComponentType('Bulma.pagination','Pagination');
         pagination.code='<nav class="pagination" role="navigation" aria-label="pagination">\
   <a class="pagination-previous">Previous</a>\
@@ -1512,7 +1637,7 @@ var tabs = new PgComponentType('Bulma.tabs', 'Tabs');
         var elementSection = new PgFrameworkLibSection("Bulma_elements","Elements");
         //Pass components in array
         componentSection.setComponentTypes([breadcrumb,card, cardHeader, cardFooter,dropdown,menu, message,modal,pagination, paginationLink, tabs ]);
-        layoutSection.setComponentTypes([column, columns, container, footer, hero, level, levelitem, mediaobject, section]);
+        layoutSection.setComponentTypes([column, columns, container, footer, hero, level, levelitem, mediaobject,  navbar, navbarItem,navbarDropdown,section]);
         elementSection.setComponentTypes([box,button,content,icon, image, notification, progress, table, title]);
 
         f.addLibSection(componentSection);
