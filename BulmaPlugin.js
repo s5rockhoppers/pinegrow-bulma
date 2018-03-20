@@ -7,6 +7,16 @@ $(function() {
 
     //Wait for Pinegrow to wake-up
     $("body").one("pinegrow-ready", function(e, pinegrow) {
+    	var f = new PgFramework('bulma', 'Bulma');
+        
+    	f.description = '<a href="http://bulma.io/">Bulma</a> starting pages and components. Templates are based on Bulma 0.63.'
+    	f.author = 'Matt Savard';
+
+    	
+        f.setScriptFileByScriptTagId('plugin-bulma'); //get url if script is included directly into edit.html
+        pinegrow.addFramework(f);
+
+
 
     	var textColorOptions = [
             {key: 'has-text-white',name:'White',html:'<div class="pg-tb-button" style="border-radius:3px;width:18px;height:16px;background-color:hsl(0,0%,100%);"></div>'},
@@ -41,11 +51,18 @@ $(function() {
     		{key: 'is-warning',name:'Warning',html:'<div class="pg-tb-button" style="border-radius:3px;width:18px;height:16px;background-color:hsl(48,100%,67%);"></div>'},
     		{key: 'is-danger',name:'Danger',html:'<div class="pg-tb-button" style="border-radius:3px;width:18px;height:16px;background-color:hsl(348,100%,61%);"></div>'},
         ];
+
+        var primaryColorOptions = [
+            {key: 'is-primary',name:'Primary',html:'<div class="pg-tb-button" style="border-radius:3px;width:18px;height:16px;background-color:hsl(171,100%,41%);"></div>'},
+            {key: 'is-info',name:'Info',html:'<div class="pg-tb-button" style="border-radius:3px;width:18px;height:16px;background-color:hsl(204,86%,53%);"></div>'},
+            {key: 'is-success',name:'Success',html:'<div class="pg-tb-button" style="border-radius:3px;width:18px;height:16px;background-color:hsl(141,71%,48%);"></div>'},
+            {key: 'is-warning',name:'Warning',html:'<div class="pg-tb-button" style="border-radius:3px;width:18px;height:16px;background-color:hsl(48,100%,67%);"></div>'},
+            {key: 'is-danger',name:'Danger',html:'<div class="pg-tb-button" style="border-radius:3px;width:18px;height:16px;background-color:hsl(348,100%,61%);"></div>'},
+        ];
     	
 
-        //Create new Pinegrow framework object
-        var f = new PgFramework("Bulma Helper", "Bulma");
-
+        
+        // Button
         var button = new PgComponentType('Bulma.button', 'Button');
         button.selector = '.button';
         button.parent_selector = 'body';
@@ -130,9 +147,10 @@ $(function() {
         };
         f.addComponentType(button);
 
+        //Column
         var column = new PgComponentType('Bulma.column', 'Column');
         column.selector = '.column';
-        column.parent_selector = 'body';
+        column.parent_selector = '.columns';
         column.preview_image = 'columns.png';
         column.preview_size = 'big';
         column.code = '<div class="column"><p>Text in a column</p></div>';
@@ -155,7 +173,48 @@ $(function() {
                             {key: 'is-one-fifth', name: "1/5"},
                             {key: 'is-two-fifths', name: "2/5"},
                             {key: 'is-three-fifths', name: "3/5"},
-                            {key: 'is-four-fifths', name: "4/5"} 
+                            {key: 'is-four-fifths', name: "4/5"},
+                            {key: 'is-1', name: "1"},
+                            {key: 'is-2', name: "2"},
+                            {key: 'is-3', name: "3"},
+                            {key: 'is-4', name: "4"},
+                            {key: 'is-5', name: "5"},
+                            {key: 'is-6', name: "6"},
+                            {key: 'is-7', name: "7"},
+                            {key: 'is-8', name: "8"},
+                            {key: 'is-9', name: "9"},
+                            {key: 'is-10', name: "10"},
+                            {key: 'is-11', name: "11"}
+
+                        ]
+                    },
+                    'Bulma.column.offset' : {
+                        type : 'select',
+                        action: 'apply_class',
+                        show_empty: true,
+                        name: 'Column offset',
+                        options: [
+                            {key: 'is-offset-one-quarter', name: "1/4"},
+                            {key: 'is-offset-half', name: "1/2"},
+                            {key: 'is-offset-three-quarters', name: "3/4"},
+                            {key: 'is-offset-one-third', name: "1/3"},
+                            {key: 'is-offset-two-thirds', name: "2/3"},
+                            {key: 'is-offset-one-fifth', name: "1/5"},
+                            {key: 'is-offset-two-fifths', name: "2/5"},
+                            {key: 'is-offset-three-fifths', name: "3/5"},
+                            {key: 'is-offset-four-fifths', name: "4/5"},
+                            {key: 'is-offset-1', name: "1"},
+                            {key: 'is-offset-2', name: "2"},
+                            {key: 'is-offset-3', name: "3"},
+                            {key: 'is-offset-4', name: "4"},
+                            {key: 'is-offset-5', name: "5"},
+                            {key: 'is-offset-6', name: "6"},
+                            {key: 'is-offset-7', name: "7"},
+                            {key: 'is-offset-8', name: "8"},
+                            {key: 'is-offset-9', name: "9"},
+                            {key: 'is-offset-10', name: "10"},
+                            {key: 'is-offset-11', name: "11"}
+
                         ]
                     },
                     'Bulma.column.narrow' : {
@@ -170,15 +229,16 @@ $(function() {
         };
         f.addComponentType(column);
         
+        // Columns
         var columns = new PgComponentType('Bulma.columns', 'Columns');
         columns.selector = '.columns';
-        columns.parent_selector = 'body';
+        columns.parent_selector = 'body, .container,.section';
         columns.preview_image = 'columns.png';
         columns.preview_size = 'big';
         columns.action_menu = {
         	add: ['Bulma.column']
         };
-        columns.code = '<div class="columns"><div class="column">First column</div><div class="column">Second Column</div></div>';
+        columns.code = '<div class="columns"><div class="column"><p>First column</p></div><div class="column"><p>Second Column</p></div></div>';
         columns.tags = 'major';
         columns.sections = {
             'Bulma.columns' : {
@@ -215,9 +275,10 @@ $(function() {
         };
         f.addComponentType(columns);
 
+        // container
         var container = new PgComponentType('Bulma.container','Container');
         container.selector = ".container";
-        container.parent_selector = "div";
+        container.parent_selector = ".section, div, body";
         container.code='<div class="container"></div>';
 
         container.sections = {
@@ -245,8 +306,10 @@ $(function() {
         };
         f.addComponentType(container);
 
+        // level
         var level = new PgComponentType("Bulma.level","Level");
         level.selector = '.level';
+        level.parent_selector = '',
         level.code = '<nav class="level">\
   <p class="level-item has-text-centered">\
     <a class="link is-info">Home</a>\
@@ -327,31 +390,49 @@ $(function() {
         };
         f.addComponentType(level);
 
+        // level item
         var levelitem = new PgComponentType("Bulma.levelitem","Level Item");
         levelitem.selector = '.level-item';
-        levelitem.parent_selector = '.level, level-right, level-left';
-        levelitem.code = '<div class="level-item">Item contents</div>';
+        levelitem.parent_selector = '.level, .level-right, .level-left';
+        levelitem.code = '<div class="level-item"><p>Item contents</p></div>';
         f.addComponentType(levelitem);
 
+        // footer
         var footer = new PgComponentType("Bulma.footer","Footer");
         footer.selector = '.footer';
         footer.parent_selector = 'body';
         footer.code = '<footer class="footer"><div class="container"><div class="content has-text-centered"><p><strong>Bulma</strong> by <a href="https://jgthms.com">Jeremy Thomas</a>. The source code is licensed<a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The website content is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.</p></div></div><footer>';
         f.addComponentType(footer);
 
+        // box
         var box = new PgComponentType("Bulma.box","Box");
         box.selector = '.box';
         box.parent_selector = 'body';
         box.code = '<div class="box"></div>';
         f.addComponentType(box);
 
+        // breadcrumb link
         var breadcrumbLink = new PgComponentType("Bulma.breadcrumbLink","Breadcrumb Link");
-        breadcrumbLink.selector = 'nav.breadcrumb>ul>li>a';
+        breadcrumbLink.selector = 'nav.breadcrumb>ul>li';
         breadcrumbLink.parent_selector = 'nav.breadcrumb>ul';
-        breadcrumbLink.code = '<li><a href="#">Link Item</a></li>';
+        breadcrumbLink.code = '<li class="is-active"><a href="#">Link Item</a></li>';
+        breadcrumbLink.sections = {
+            'Bulma.breadcrumbLink': {
+                name: 'Item Options',
+                fields: {
+                    'Active' :{
+                        type:'checkbox',
+                        name: 'Active?',
+                        value:'is-active',
+                        action:'apply_class'
+                    }
+                }
+            }
+        }
         f.addComponentType(breadcrumbLink);
 
 
+        // menu
 		var menu = new PgComponentType("Bulma.menu","Menu");
         menu.selector = '.menu';
         menu.parent_selector = 'body';
@@ -392,6 +473,7 @@ $(function() {
         f.addComponentType(menu);
 
 
+        // icon
         var icon = new PgComponentType("Bulma.icon","Icon");
         icon.selector = '.icon';
         icon.parent_selector = 'body';
@@ -418,13 +500,24 @@ $(function() {
         					{key:'is-medium',name:'Medium'},
         					{key:'is-large',name:'Large'},
         				]
-        			}
+        			},
+                    'Bulma.icon.position': {
+                        type: 'select',
+                        action: 'apply_class',
+                        name: 'Position',
+                        show_empty: true,
+                        options: [
+                            {key:'is-left',name:'Left'},
+                            {key:'is-right',name:'Right'}                            
+                        ]
+                    }
         		}
         	}
         };
         f.addComponentType(icon);
 
 
+        // media element
         var mediaobject = new PgComponentType('Bulma.mediaobject','Media Object');
         mediaobject.selector='.media';
         mediaobject.code='<article class="media">\
@@ -462,6 +555,7 @@ $(function() {
 f.addComponentType(mediaobject);
 
 
+        // breadcrumb
         var breadcrumb = new PgComponentType('Bulma.breadcrumb', 'Breadcrumbs');
         breadcrumb.selector = '.breadcrumb';
         breadcrumb.parent_selector = 'body';
@@ -525,6 +619,7 @@ f.addComponentType(mediaobject);
         };
         f.addComponentType(breadcrumb);
 
+        // hero
         var hero = new PgComponentType('Bulma.hero','Hero');
         hero.selector = '.hero';
         hero.parent_selector = 'body';
@@ -554,6 +649,7 @@ f.addComponentType(mediaobject);
                 		name: 'Size',
                 		show_empty: true,
                 		options: [
+                            {key: 'is-small',name:'Small'},
                 			{key: 'is-medium',name:'Medium'},
                 			{key: 'is-large',name:'Large'},
                 			{key: 'is-fullheight',name:'Full Height'},
@@ -609,6 +705,7 @@ f.addComponentType(mediaobject);
         };
         f.addComponentType(hero);
 
+        // section
         var section = new PgComponentType('Bulma.section','Section');
         section.selector=".section";
         section.parent_selector='body';
@@ -634,14 +731,13 @@ f.addComponentType(mediaobject);
         f.addComponentType(section);
 
 
-
-var card = new PgComponentType('Bulma.card', 'Card',{
+        // card
+        var card = new PgComponentType('Bulma.card', 'Card',{
         'selector': '.card',
         'preview_image': 'card.png',
         action_menu : {
         	add: ['Bulma.cardHeader','Bulma.cardFooter'],
         	'on_add' : function(pgel, pgnew, newdef,prepend){
-        		
         		if(newdef.type == 'Bulma.cardHeader'){
         			pgel.prepend(pgnew);	
         		} else {
@@ -704,25 +800,49 @@ var card = new PgComponentType('Bulma.card', 'Card',{
             'Bulma.card' : {
                 name : 'Card options',
                 fields : {
-                    
+                    header:{
+                        type: 'checkbox',
+                        name: 'Header?',
+                        value: '1',
+                        action: 'custom' ,
+                        get_value: function (pgel) {
+                            return pgel.find('header.card-header').length > 0 ? "1" : null;
+                        },
+                        set_value: function (pgel, value, values, oldValue, eventType) {
+                            crsaWillChangeDom();
+                            var pgb = pgel.findOne('header.card-header');
+                            if (value) {
+                                if (!pgb) {
+                                    pgb = pgCreateNodeFromHtml('<header class="card-header"></header>').html('<header class="card-header"><p class="card-header-title">Component</p><a href="#" class="card-header-icon" aria-label="more options"><span class="icon"><i class="fas fa-angle-down" aria-hidden="true"></i></span></a></header>');
+                                    pgel.prepend(pgb);
+                                }
+                            } else {
+                                pgb.remove();
+                            }
+                            return value;
+                        }
+                    }
                 }
             }
         }
     });
     f.addComponentType(card);
 
+        // card header
         var cardHeader = new PgComponentType('Bulma.cardHeader','Card Header');
         cardHeader.selector = '.card-header';
         cardHeader.parent_selector = '.card';
         cardHeader.code = '<header class="card-header"><div class="card-header-title">Header title</div><a href="#" class="card-header-icon" aria-label="more options"><span class="icon"><i class="fas fa-angle-down" aria-hidden="true"></i></span></a></header>';
          f.addComponentType(cardHeader);
 
+        // card footer
         var cardFooter = new PgComponentType('Bulma.cardFooter','Card Footer');
         cardFooter.selector = '.card-footer';
         cardFooter.parent_selector = '.card';
         cardFooter.code = '<footer class="card-footer"><a href="#" class="card-footer-item">Save</a><a href="#" class="card-footer-item">Edit</a><a href="#" class="card-footer-item">Delete</a></footer>';
          f.addComponentType(cardFooter);
 
+         // common settings
           var def_all = new PgComponentType('Bulma.all', 'All elements', {
             selector : function(pgel) { return true },
             name : 'Text',
@@ -842,7 +962,8 @@ var card = new PgComponentType('Bulma.card', 'Card',{
 
     
 
-var message = new PgComponentType('Bulma.message', 'Message');
+        // message
+        var message = new PgComponentType('Bulma.message', 'Message');
         message.selector = '.message';
         message.parent_selector = 'body';
         message.preview_image = 'message.png';
@@ -908,7 +1029,8 @@ var message = new PgComponentType('Bulma.message', 'Message');
         };
         f.addComponentType(message);
 
-var tabs = new PgComponentType('Bulma.tabs', 'Tabs');
+        // tabs
+        var tabs = new PgComponentType('Bulma.tabs', 'Tabs');
         tabs.selector = '.tabs';
         tabs.parent_selector = 'body';
         tabs.action_menu = {
@@ -989,25 +1111,28 @@ var tabs = new PgComponentType('Bulma.tabs', 'Tabs');
         };
         f.addComponentType(tabs);
 
+        // table row
 		var row = new PgComponentType("Bulma.row","Insert Row");
         row.selector = 'tbody';
         row.parent_selector = 'table';
         row.code = '<tr></tr>';
         f.addComponentType(row);
 
+        // tab
         var tab = new PgComponentType("Bulma.tab","Insert Tab");
-        tabs.selector = '.tabs';
-        tabs.parent_selector = 'body';
+        tab.selector = '.tab';
+        tab.parent_selector = '.tabs';
         tab.code = '<li><a href="#">Link Item</a></li>';
         f.addComponentType(tab);
 
+        // icon tab
         var icontab = new PgComponentType("Bulma.icon.tab","Insert Icon Tab");
-        tabs.selector = '.tabs';
-        tabs.parent_selector = 'body';
+        icontab.selector = '.tab';
+        icontab.parent_selector = '.tabs';
         icontab.code = '<li><a href="#"><span class="icon is-small"><i class="fas fa-image"></i></span><span>Tab Item</span></a></li>';
         f.addComponentType(icontab);
 
-
+        // image
         var image = new PgComponentType('Bulma.image', 'Image');
         image.selector = '.image';
         image.parent_selector = 'body';
@@ -1052,10 +1177,11 @@ var tabs = new PgComponentType('Bulma.tabs', 'Tabs');
         };
         f.addComponentType(image);
 
+        // notification
         var notification = new PgComponentType('Bulma.notification', 'notification');
         notification.selector = '.notification';
         notification.parent_selector = 'body';
-        notification.code = '<div class="notification">Contents</div>';
+        notification.code = '<div class="notification"><p>Contents</p></div>';
         notification.tags = 'major';
         notification.sections = {
             'Bulma.notification' : {
@@ -1098,6 +1224,7 @@ var tabs = new PgComponentType('Bulma.tabs', 'Tabs');
         f.addComponentType(notification);
 
 
+        // table
         var table = new PgComponentType('Bulma.table','Table');
         table.selector = '.table';
         table.parent_selector = 'body';
@@ -1208,6 +1335,7 @@ var tabs = new PgComponentType('Bulma.tabs', 'Tabs');
      f.addComponentType(table);
 
 
+        // progress bar
         var progress = new PgComponentType('Bulma.progress', 'Progress');
         progress.selector = '.progress';
         progress.parent_selector = 'body';
@@ -1254,9 +1382,10 @@ var tabs = new PgComponentType('Bulma.tabs', 'Tabs');
         f.addComponentType(progress);
 
 
+        // title
         var title = new PgComponentType('Bulma.title', 'Title');
         title.selector = '.title, .subtitle';
-        title.parent_selector = 'h1,h2,h3,h4,h5,p,span';
+        title.parent_selector = 'h1,h2,h3,h4,h5,p,span, div';
         title.code = '<h1 class="title">Title</h1>';
         title.tags = 'major';
         title.sections = {
@@ -1299,6 +1428,7 @@ var tabs = new PgComponentType('Bulma.tabs', 'Tabs');
         f.addComponentType(title);
 
 
+        // modal
         var modal = new PgComponentType('Bulma.modal','Modal');
         modal.code='<div class="modal"><div class="modal-background"></div><div class="modal-content"><!-- Any other Bulma elements you want --></div><button class="modal-close is-large" aria-label="close"></button></div>';
         modal.selector = '.modal';
@@ -1321,6 +1451,7 @@ var tabs = new PgComponentType('Bulma.tabs', 'Tabs');
         f.addComponentType(modal);
 
 
+        // content
         var content = new PgComponentType('Bulma.content','Content');
         content.code='<div class="content"><h1>Hello World</h1><p>Lorem ipsum<sup><a>[1]</a></sup> dolor sit amet, consectetur adipiscing elit. Nulla accumsan, metus ultrices eleifend gravida, nulla nunc varius lectus, nec rutrum justo nibh eu lectus. Ut vulputate semper dui. Fusce erat odio, sollicitudin vel erat vel, interdum mattis neque. Sub<sub>script</sub> works as well!</p><h2>Second level</h2><p>Curabitur accumsan turpis pharetra <strong>augue tincidunt</strong> blandit. Quisque condimentum maximus mi, sit amet commodo arcu rutrum id. Proin pretium urna vel cursus venenatis. Suspendisse potenti. Etiam mattis sem rhoncus lacus dapibus facilisis. Donec at dignissim dui. Ut et neque nisl.</p><ul><li>In fermentum leo eu lectus mollis, quis dictum mi aliquet.</li><li>Morbi eu nulla lobortis, lobortis est in, fringilla felis.</li><li>Aliquam nec felis in sapien venenatis viverra fermentum nec lectus.</li><li>Ut non enim metus.</li></ul></div>';
         content.selector = '.content';
@@ -1362,6 +1493,12 @@ var tabs = new PgComponentType('Bulma.tabs', 'Tabs');
                 		action:'apply_class',
                 		name:'Transparent?'
                 	},
+                    'Bulma.navbar.shadow':{
+                        type:'checkbox',
+                        value:'has-shadow',
+                        action:'apply_class',
+                        name:'Shadow?'
+                    },
                 	'Bulma.navbar.fixed':{
                 		type:'select',
                 		action:'apply_class',
@@ -1388,7 +1525,7 @@ var tabs = new PgComponentType('Bulma.tabs', 'Tabs');
         // navbar item
         var navbarItem = new PgComponentType('Bulma.navbarItem','Navbar Item');
         navbarItem.selector = '.navbar-item';
-        navbarItem.parent_selector = '.navbar .navbar-brand, .navbar-start, .navbar-end, .navbar-dropdown';
+        navbarItem.parent_selector = '.navbar, .navbar-brand, .navbar-start, .navbar-end, .navbar-dropdown';
         navbarItem.code = '<div class="navbar-item">Item</div>';
         navbarItem.sections = {
             'Bulma.navbarItem' : {
@@ -1397,7 +1534,7 @@ var tabs = new PgComponentType('Bulma.tabs', 'Tabs');
                 	'Bulma.navbarItem.display' :{
                 		type:'select',
                 		name:'Dropdown Display',
-                		action:'apply-class',
+                		action:'apply_class',
                 		show_empty: true,
                 		options: [
                 			{key:'is-hoverable',name:'Hoverable'},
@@ -1450,6 +1587,7 @@ var tabs = new PgComponentType('Bulma.tabs', 'Tabs');
         f.addComponentType(navbarDropdown);
 
 
+        // pagination
 		var pagination = new PgComponentType('Bulma.pagination','Pagination');
         pagination.code='<nav class="pagination" role="navigation" aria-label="pagination">\
   <a class="pagination-previous">Previous</a>\
@@ -1518,6 +1656,7 @@ var tabs = new PgComponentType('Bulma.tabs', 'Tabs');
         f.addComponentType(pagination);
 
 
+        // pagination link
 		var paginationLink = new PgComponentType('Bulma.paginationLink','Pagination Link');
         paginationLink.code='<li><a class="pagination-link is-current" aria-label="Page 1" aria-current="page">1</a></li>';
         paginationLink.selector = '.pagination-link,.pagination-previous, .pagination-next';
@@ -1561,6 +1700,7 @@ var tabs = new PgComponentType('Bulma.tabs', 'Tabs');
         f.addComponentType(paginationLink);
 
 
+        // dropdown
         var dropdown = new PgComponentType('Bulma.dropdown','Dropdown');
         dropdown.code='<div class="dropdown is-active">\
   <div class="dropdown-trigger">\
@@ -1628,20 +1768,191 @@ var tabs = new PgComponentType('Bulma.tabs', 'Tabs');
         };
         f.addComponentType(dropdown);
 
+        // form input
+        var formInput = new PgComponentType('Bulma.form.input','Input');
+        formInput.selector = 'input';
+        formInput.parent_selector = 'div.control';
+        formInput.tags = 'major';
+        formInput.code = '<input class="input" type="text" placeholder="Placeholder text">';
+        formInput.sections = {
+            'Bulma.form.input' : {
+                name : 'Input options',
+                fields : {
+                    'Bulma.formInput.color':{
+                        type:'select',
+                        action: 'apply_class',
+                        name: 'Color',
+                        show_empty: true,
+                        toggle_buttons: true,
+                        options: primaryColorOptions
+                    },
+                    'Bulma.formInput.size':{
+                        type:'select',
+                        action: 'apply_class',
+                        name: 'Size',
+                        options: [
+                            {key:'is-small',name:'Small'},
+                            {key:'',name:'Normal'},
+                            {key:'is-medium',name:'Medium'},
+                            {key:'is-large',name:'Large'}
+                        ]
+                    },
+                    'Bulma.formInput.rounded':{
+                        type:'checkbox',
+                        action: 'apply_class',
+                        name: 'Rounded?',
+                        value: 'is-rounded'
+                    },
+                    'Bulma.formInput.state':{
+                        type:'select',
+                        action: 'apply_class',
+                        name: 'State',
+                        options: [
+                            {key:'',name:'Normal'},
+                            {key:'is-hovered',name:'Hovered'},
+                            {key:'is-focused',name:'Focused'}
+                        ]
+                    }
+                }
+            }
+        }
+        f.addComponentType(formInput);  
+
+        // form control
+        var formControl = new PgComponentType('Bulma.form.control','Control');
+        formControl.selector = '.control';
+        formControl.action_menu = {
+            add: ['Bulma.form.input','Bulma.icon','Bulma.button']
+        };
+        formControl.parent_selector = 'div.field, form';
+        formControl.tags = 'major';
+        formControl.code = '<div class="control"><input class="input" type="text" placeholder="Placeholder"></div>';
+        formControl.sections = {
+            'Bulma.form.control' : {
+                name : 'Control options',
+                fields : {
+                    'Bulma.formControl.iconsL':{
+                        type:'checkbox',
+                        value: 'has-icons-left',
+                        action: 'apply_class',
+                        name: 'Has icons left?'
+                    },
+                    'Bulma.formControl.iconsR':{
+                        type:'checkbox',
+                        value: 'has-icons-right',
+                        action: 'apply_class',
+                        name: 'Has icons right?'
+                    },
+                    'Bulma.formControl.expanded':{
+                        type:'checkbox',
+                        action: 'apply_class',
+                        name: 'Expanded?',
+                        value:'is-expanded'
+                    },
+                    'Bulma.formControl.loading':{
+                        type:'checkbox',
+                        action: 'apply_class',
+                        name: 'Loading?',
+                        value:'is-loading'
+                    },
+                    'Bulma.formControl.size':{
+                        type:'select',
+                        action: 'apply_class',
+                        name: 'Size',
+                        options: [
+                            {key:'is-small',name:'Small'},
+                            {key:'',name:'Normal'},
+                            {key:'is-medium',name:'Medium'},
+                            {key:'is-large',name:'Large'},
+                        ]
+                    }
+
+                }
+            }
+        }
+        f.addComponentType(formControl); 
+
+        // form field
+        var formField = new PgComponentType('Bulma.form.field','Field');
+        formField.selector = 'div.field';
+        formField.action_menu = {
+            add: ['Bulma.form.control']
+        };
+        formField.parent_selector = 'form, body';
+        formField.tags = 'major';
+        formField.code = '<div class="field"><label class="label">Name</label><div class="control"><input class="input" type="text" placeholder="Placeholder"></div><p class="help">Help text</p></div>';
+        formField.sections = {
+            'Bulma.form.field' : {
+                name : 'Field options',
+                fields : {
+                    'Bulma.formField.addons':{
+                        type:'checkbox',
+                        value: 'has-addons',
+                        action: 'apply_class',
+                        name: 'Has addons?'
+                    },
+                    'Bulma.formField.addonspos':{
+                        type:'select',
+                        show_empty: true,
+                        options: [
+                            {key:'has-addons-centered',name:'Centered'},
+                            {key:'has-addons-right',name:'Right'}
+                        ],
+                        action: 'apply_class',
+                        name: 'Addon Position'
+                    },
+                    'Bulma.formField.grouped':{
+                        type:'checkbox',
+                        value: 'is-grouped',
+                        action: 'apply_class',
+                        name: 'Grouped?'
+                    },
+                    'Bulma.formField.groupedPosition':{
+                        type:'select',
+                        show_empty: true,
+                        options: [
+                            {key:'is-grouped-centered',name:'Centered'},
+                            {key:'is-grouped-right',name:'Right'},
+                        ],
+                        action: 'apply_class',
+                        name: 'Grouped Position'
+                    },                    
+                    'Bulma.formField.multiline':{
+                        type:'checkbox',
+                        value: 'is-grouped-multiline',
+                        action: 'apply_class',
+                        name: 'Multiline?'
+                    },                
+                    'Bulma.formField.horizontal':{
+                        type:'checkbox',
+                        value: 'is-horizontal',
+                        action: 'apply_class',
+                        name: 'Horizontal?'
+                    }
+                }
+            }
+        }
+        f.addComponentType(formField);      
+
 
         //Tell Pinegrow about the framework
-        pinegrow.addFramework(f);
+        //pinegrow.addFramework(f);
             
         var componentSection = new PgFrameworkLibSection("Bulma_components", "Components");
         var layoutSection = new PgFrameworkLibSection("Bulma_layout","Layout");
         var elementSection = new PgFrameworkLibSection("Bulma_elements","Elements");
+        var formSection = new PgFrameworkLibSection("Bulma_forms","Forms");
         //Pass components in array
         componentSection.setComponentTypes([breadcrumb,card, cardHeader, cardFooter,dropdown,menu, message,modal,pagination, paginationLink, tabs ]);
         layoutSection.setComponentTypes([column, columns, container, footer, hero, level, levelitem, mediaobject,  navbar, navbarItem,navbarDropdown,section]);
         elementSection.setComponentTypes([box,button,content,icon, image, notification, progress, table, title]);
+        formSection.setComponentTypes([formInput, formControl, formField]);
 
         f.addLibSection(componentSection);
         f.addLibSection(layoutSection);
         f.addLibSection(elementSection);
+        f.addLibSection(formSection);
+
+        f.addTemplateProjectFromResourceFolder('template');
    });
 });
