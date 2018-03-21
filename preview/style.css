@@ -1,0 +1,6 @@
+body {
+    min-width:400px;
+}
+.modal-dialog {
+    transform: none !important;
+}

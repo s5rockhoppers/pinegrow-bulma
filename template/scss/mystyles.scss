@@ -1,0 +1,279 @@
+@charset "utf-8";
+
+@import "utilities/initial-variables";
+@import "utilities/functions";
+
+// Colors
+$red: #DB2828;
+$orange: #F2711C;
+$yellow: #FBBD08;
+$olive: #B5CC18;
+$green: #21BA45;
+$teal: #00B5AD;
+$blue: #0970bd;
+$violet: #6435C9;
+$purple: #A333C8;
+$pink: #E03997;
+$brown: #A5673F;
+$grey: #767676;
+$black: #1B1C1D;
+
+/* Inverted colors */
+$red-invert: findColorInvert($red);
+$orange-invert: findColorInvert($orange);
+$yellow-invert: findColorInvert($yellow);
+$olive-invert: findColorInvert($olive);
+$green-invert: findColorInvert($green);
+$teal-invert: findColorInvert($teal);
+$blue-invert: findColorInvert($blue);
+$violet-invert: findColorInvert($violet);
+$purple-invert: findColorInvert($purple);
+$pink-invert: findColorInvert($pink);
+$brown-invert: findColorInvert($brown);
+$grey-invert: findColorInvert($grey);
+$black-invert: findColorInvert($black);
+
+/*---  Light Colors  ---*/
+$lightRed: #FF695E;
+$lightOrange: #FF851B;
+$lightYellow: #FFE21F;
+$lightOlive: #D9E778;
+$lightGreen: #2ECC40;
+$lightTeal: #6DFFFF;
+$lightBlue: #54C8FF;
+$lightViolet: #A291FB;
+$lightPurple: #DC73FF;
+$lightPink: #FF8EDF;
+$lightBrown: #D67C1C;
+$lightGrey: #DCDDDE;
+$lightBlack: #545454;
+
+/* Inverted light colors */
+/* Inverted colors */
+$lightRed-invert: findColorInvert($lightRed);
+$lightOrange-invert: findColorInvert($lightOrange);
+$lightYellow-invert: findColorInvert($lightYellow);
+$lightOlive-invert: findColorInvert($lightOlive);
+$lightGreen-invert: findColorInvert($lightGreen);
+$lightTeal-invert: findColorInvert($lightTeal);
+$lightBlue-invert: findColorInvert($lightBlue);
+$lightViolet-invert: findColorInvert($lightViolet);
+$lightPurple-invert: findColorInvert($lightPurple);
+$lightPink-invert: findColorInvert($lightPink);
+$lightBrown-invert: findColorInvert($lightBrown);
+$lightGrey-invert: findColorInvert($lightGrey);
+$lightBlack-invert: findColorInvert($lightBlack);
+
+// default colors
+$primary: $turquoise;
+$link: $violet;
+$info: $cyan;
+$success: $green;
+$warning: $yellow;
+$danger: $red;
+$dark: $grey-darker;
+$text: $grey-dark;
+$background: $white-ter;
+$code: $lightRed;
+
+@import "utilities/derived-variables";
+
+// breakpoints
+$gap: 32px;
+$tablet: 769px;
+$desktop: 960px + (2*$gap);
+$widescreen: 1152px + (2*$gap);
+$fullhd: 1344px + (2*$gap);
+
+// section
+$section-padding: 3rem 1.5rem;
+$section-padding-medium: 9rem 1.5rem;
+$section-padding-large: 18rem 1.5rem;
+
+//footer
+$footer-background-color: $background;
+
+// Box
+$box-color: $text;
+$box-background-color: $white;
+$box-radius: $radius-large;
+$box-shadow: 0 2px 3px rgba($black, 0.1), 0 0 0 1px rgba($black, 0.1);
+$box-padding: 1.25rem;
+$box-link-hover-shadow: 0 2px 3px rgba($black, 0.1), 0 0 0 1px $link;
+$box-link-active-shadow: inset 0 1px 2px rgba($black, 0.2), 0 0 0 1px $link;
+
+// Buttons
+$button-color: $grey-darker;
+$button-background-color: $white;
+$button-border-color: $grey-lighter;
+$button-hover-color: $link-hover;
+$button-hover-border-color: $link-hover-border;
+$button-focus-color: $link-focus;
+$button-focus-border-color: $link-focus-border;
+$button-focus-box-shadow-size: 0 0 0 0.125em;
+$button-focus-box-shadow-color: rgba($link, 0.25);
+$button-active-color: $link-active;
+$button-active-border-color: $link-active-border;
+$button-text-color: $text;
+$button-text-hover-background-color: $background;
+$button-text-hover-color: $text-strong;
+$button-disabled-background-color: $white;
+$button-disabled-border-color: $grey-lighter;
+$button-disabled-shadow: none;
+$button-disabled-opacity: 0.5;
+$button-static-color: $grey;
+$button-static-background-color: $white-ter;
+$button-static-border-color: $grey-lighter;
+
+// Content
+$content-heading-color: $text-strong;
+$content-heading-weight: $weight-normal;
+$content-heading-line-height: 1.25;
+$content-blockquote-background-color: $background;
+$content-blockquote-border-left: 5px solid $border;
+$content-blockquote-padding: 1.25em 1.5em;
+$content-pre-padding: 1.25em 1.5em;
+$content-table-cell-border: 1px solid $border;
+$content-table-cell-border-width: 0 0 1px;
+$content-table-cell-padding: 0.5em 0.75em;
+$content-table-cell-heading-color: $text-strong;
+$content-table-row-hover-background-color: $background;
+$content-table-head-cell-border-width: 0 0 2px;
+$content-table-head-cell-color: $text-strong;
+$content-table-foot-cell-border-width: 2px 0 0;
+$content-table-foot-cell-color: $text-strong;
+
+// Icons
+$icon-dimensions: 1.5rem;
+$icon-dimensions-small: 1rem;
+$icon-dimensions-medium: 2rem;
+$icon-dimensions-large: 3rem;
+
+// Images
+$dimensions: 16 24 32 48 64 96 128;
+
+// Notifications
+$notification-background-color: $background;
+$notification-radius: $radius;
+$notification-padding: 1.25rem 2.5rem 1.25rem 1.5rem;
+
+// progress
+$progress-bar-background-color: $border;
+$progress-value-background-color: $text;
+
+// Table
+$table-color: $grey-darker;
+$table-background-color: $white;
+$table-cell-border: 1px solid $grey-lighter;
+$table-cell-border-width: 0 0 1px;
+$table-cell-padding: 0.5em 0.75em;
+$table-cell-heading-color: $text-strong;
+$table-head-cell-border-width: 0 0 2px;
+$table-head-cell-color: $text-strong;
+$table-foot-cell-border-width: 22px 0 0;
+$table-foot-cell-color: $text-strong;
+$table-row-hover-background-color: $white-bis;
+$table-row-active-background-color: $primary;
+$table-row-active-color: $primary-invert;
+$table-striped-row-even-background-color: $white-bis;
+$table-striped-row-even-hover-background-color: $white-ter;
+
+// Tag
+$tag-background-color: $background;
+$tag-color: $text;
+$tag-radius: $radius;
+$tag-delete-margin: 1px;
+
+// Title
+$title-color: $grey-darker;
+$title-size: $size-3;
+$title-weight: $weight-semibold;
+$title-strong-color: inherit;
+$title-strong-weight: inherit;
+$subtitle-color: $grey-dark;
+$subtitle-size: $size-5;
+$subtitle-weight: $weight-normal;
+$subtitle-strong-color: $grey-darker;
+$subtitle-strong-weight: $weight-semibold;
+
+// Breadcrumb
+$breadcrumb-item-color: $link;
+$breadcrumb-item-hover-color: $link-hover;
+$breadcrumb-item-active-color: $text-strong;
+$breadcrumb-item-separator-color: $text;
+
+// Card
+$card-color: $text;
+$card-background-color: $white;
+$card-shadow: 0 2px 3px rgba($black, 0.1), 0 0 0 1px rgba($black, 0.1);
+$card-header-color: $text-strong;
+$card-header-shadow: 0 1px 2px rgba($black, 0.1);
+$card-header-weight: $weight-bold;
+$card-footer-border-top: 1px solid $border;
+
+// Tabs
+$tabs-border-bottom-color: $border;
+$tabs-border-bottom-style: solid;
+$tabs-border-bottom-width: 1px;
+$tabs-link-color: $text;
+$tabs-link-hover-border-bottom-color: $text-strong;
+$tabs-link-hover-color: $text-strong;
+$tabs-link-active-border-bottom-color: $link;
+$tabs-link-active-color: $link;
+$tabs-link-padding: 0.5em 1em;
+$tabs-boxed-link-radius: $radius;
+$tabs-boxed-link-hover-background-color: $background;
+$tabs-boxed-link-hover-border-bottom-color: $border;
+$tabs-boxed-link-active-background-color: $white;
+$tabs-boxed-link-active-border-color: $border;
+$tabs-boxed-link-active-border-bottom-color: transparent;
+$tabs-toggle-link-border-color: $border;
+$tabs-toggle-link-border-style: solid;
+$tabs-toggle-link-border-width: 1px;
+$tabs-toggle-link-hover-background-color: $background;
+$tabs-toggle-link-hover-border-color: $border-hover;
+$tabs-toggle-link-radius: $radius;
+$tabs-toggle-link-active-background-color: $link;
+$tabs-toggle-link-active-border-color: $link;
+$tabs-toggle-link-active-color: $link-invert;
+
+// Add a serif family
+$family-serif: "Segoe UI", "Georgia", serif;
+
+//Fonts
+$family-primary: $family-sans-serif;
+
+// add new color variables to the color map
+$addColors: (
+  "red":($red, $red-invert),
+  "orange": ($orange, $orange-invert),
+    "yellow": ($yellow, $yellow-invert),
+    "olive": ($olive, $olive-invert),
+    "green": ($green, $green-invert),
+    "teal": ($teal, $teal-invert),
+    "blue": ($blue, $blue-invert),
+    "violet": ($violet, $violet-invert),
+    "purple": ($purple, $purple-invert),
+    "pink": ($pink, $pink-invert),
+    "brown": ($brown, $brown-invert),
+    "grey": ($grey, $grey-invert),
+    "black": ($black, $black-invert),
+    "lightRed":($red, $red-invert),
+  "lightOrange": ($lightOrange, $lightOrange-invert),
+    "lightYellow": ($lightYellow, $lightYellow-invert),
+    "lightOlive": ($lightOlive, $lightOlive-invert),
+    "lightGreen": ($lightGreen, $lightGreen-invert),
+    "lightTeal": ($lightTeal, $lightTeal-invert),
+    "lightBlue": ($lightBlue, $lightBlue-invert),
+    "lightViolet": ($lightViolet, $lightViolet-invert),
+    "lightPurple": ($lightPurple, $lightPurple-invert),
+    "lightPink": ($lightPink, $lightPink-invert),
+    "lightBrown": ($lightBrown, $lightBrown-invert),
+    "lightGrey": ($lightGrey, $lightGrey-invert),
+    "lightBlack": ($lightBlack, $lightBlack-invert)
+);
+$colors: map-merge($colors, $addColors);
+
+// my variables
+// import bulma
+@import "bulma.scss";

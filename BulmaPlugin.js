@@ -8,14 +8,22 @@ $(function() {
     //Wait for Pinegrow to wake-up
     $("body").one("pinegrow-ready", function(e, pinegrow) {
         var f = new PgFramework('bulma', 'Bulma');
-        
+        f.type="bulma";
+        f.allow_single_type = true;
+
         f.description = '<a href="http://bulma.io/">Bulma</a> starting pages and components. Templates are based on Bulma 0.63.'
         f.author = 'Matt Savard';
 
-        f.ignore_css_files = [/(^|\/)bulma\.(css|less)/i, /(^|\/)bulma\.min\.(css|less)/i, /(^|\/)font(\-|)awesome(\.min|)\.(css|less)/i];
-         
+        f.ignore_css_files = [/(^|\/)bulma\.(css)/i, /(^|\/)bulma\.min\.(css|less)/i, /(^|\/)font(\-|)awesome(\.min|)\.(css|less)/i];
+        
+        f.detect_async = function (crsaPage, done) {
+            crsaPage.stylesheetsThatContain(/bulma/i, /(^|\/)bulma(\.min|)\.(css)/i, function(list) {
+                done(list.length > 0)
+            });
+        }
+
         f.setScriptFileByScriptTagId('plugin-bulma'); //get url if script is included directly into edit.html
-        pinegrow.addFramework(f);
+        pinegrow.addFramework(f,5);
 
         var bm = new PgToggleButtonMaker();
 
@@ -67,8 +75,6 @@ $(function() {
         var button = new PgComponentType('Bulma.button', 'Button');
         button.selector = '.button';
         button.parent_selector = 'body';
-        button.preview_image = 'button.png';
-        button.preview_size = 'big';
         button.code = '<button class="button">Button</button>';
         button.tags = 'major';
         button.sections = {
@@ -565,8 +571,6 @@ f.addComponentType(mediaobject);
         var breadcrumb = new PgComponentType('Bulma.breadcrumb', 'Breadcrumbs');
         breadcrumb.selector = '.breadcrumb';
         breadcrumb.parent_selector = 'body';
-        breadcrumb.preview_image = 'breadcrumb.png';
-        breadcrumb.preview_size = 'big';
         breadcrumb.code = '<nav class="breadcrumb" aria-label="breadcrumbs"><ul><li><a href="#"><span class="icon is-small"><i class="fas fa-home"></i></span><span>Bulma</span></a></li><li><a href="#">Documentation</a></li><li><a href="#">Components</a></li><li class="is-active"><a href="#" aria-current="page">Breadcrumb</a></li></ul></nav';
         breadcrumb.tags = 'major';
         breadcrumb.action_menu = {
@@ -980,8 +984,6 @@ f.addComponentType(mediaobject);
         var message = new PgComponentType('Bulma.message', 'Message');
         message.selector = '.message';
         message.parent_selector = 'body';
-        message.preview_image = 'message.png';
-        message.preview_size = 'big';
         message.code = '<article class="message">\
   <div class="message-header">\
     <p>Hello World</p>\
@@ -1959,6 +1961,9 @@ f.addComponentType(mediaobject);
         }
         f.addComponentType(formField);      
 
+        var res = new PgComponentTypeResource('https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css');
+        res.type = 'text/css';
+        f.resources.add(res);
 
         //Tell Pinegrow about the framework
         //pinegrow.addFramework(f);
@@ -1978,6 +1983,21 @@ f.addComponentType(mediaobject);
         f.addLibSection(elementSection);
         f.addLibSection(formSection);
 
-        f.addTemplateProjectFromResourceFolder('template');
+        //Register starting page template
+        var notRequiredFiles = ["hero.css"];
+        var templatesOrder = ["index.html"];
+
+        f.addTemplateProjectFromResourceFolder('template', null, 0, function (node) {
+            var currentFilesName = notRequiredFiles.filter(function (fileName) {
+                return node.name == fileName;
+            });
+            if (currentFilesName && currentFilesName.length > 0) {
+                node.required = false;
+            }
+
+            var nodeIndex = templatesOrder.indexOf(node.name);
+            if (nodeIndex >= 0) node.order = nodeIndex;
+        });
+        
    });
 });
