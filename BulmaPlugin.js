@@ -12,7 +12,8 @@ $(function() {
     	f.description = '<a href="http://bulma.io/">Bulma</a> starting pages and components. Templates are based on Bulma 0.63.'
     	f.author = 'Matt Savard';
 
-    	
+    	f.ignore_css_files = [/(^|\/)bulma\.(css|less)/i, /(^|\/)bulma\.min\.(css|less)/i, /(^|\/)font(\-|)awesome(\.min|)\.(css|less)/i];
+		 
         f.setScriptFileByScriptTagId('plugin-bulma'); //get url if script is included directly into edit.html
         pinegrow.addFramework(f);
 
@@ -77,17 +78,19 @@ $(function() {
                 	'Bulma.button.value' :{
                 		type: 'text',
                 		name: 'Value',
+							
                 		action: 'element_html'
                 	},
                     'Bulma.button.size' : {
                         type : 'select',
                         action: 'apply_class',
                         show_empty: true,
+							  toggle_buttons: true,
                         name: 'Button size',
                         options: [
-                            {key: 'is-small', name: "Small"},
-                            {key: 'is-medium', name: "Medium"},
-                            {key: 'is-large', name: "Large"},
+                            {key: 'is-small', name: "Small",html:'<div style="color:#fff;font-size:10px;padding: 2px 16px;border-radius: 4px;background-color:#4D4D4D;">S</div>'},
+                            {key: 'is-medium', name: "Medium",html:'<div style="color:#fff;font-size:10px;padding: 2px 16px;border-radius: 4px;background-color:#4D4D4D;">M</div>'},
+                            {key: 'is-large', name: "Large",html:'<div style="color:#fff;font-size:10px;padding: 2px 16px;border-radius: 4px;background-color:#4D4D4D;">L</div>'},
                         ]
                     },
                     'Bulma.button.color' : {
@@ -649,13 +652,13 @@ f.addComponentType(mediaobject);
                 		name: 'Size',
                 		show_empty: true,
                 		options: [
-                            {key: 'is-small',name:'Small'},
+                        {key: 'is-small',name:'Small'},
                 			{key: 'is-medium',name:'Medium'},
                 			{key: 'is-large',name:'Large'},
                 			{key: 'is-fullheight',name:'Full Height'},
                 		]
                 	},
-                	'header': {
+                	'Bulma.header': {
                 		type: 'checkbox',
                 		value: 1,
                 		name: 'Header?',
@@ -809,7 +812,7 @@ f.addComponentType(mediaobject);
                             return pgel.find('header.card-header').length > 0 ? "1" : null;
                         },
                         set_value: function (pgel, value, values, oldValue, eventType) {
-                            crsaWillChangeDom();
+                            //crsaWillChangeDom();
                             var pgb = pgel.findOne('header.card-header');
                             if (value) {
                                 if (!pgb) {
