@@ -7,50 +7,50 @@ $(function() {
 
     //Wait for Pinegrow to wake-up
     $("body").one("pinegrow-ready", function(e, pinegrow) {
-    	var f = new PgFramework('bulma', 'Bulma');
+        var f = new PgFramework('bulma', 'Bulma');
         
-    	f.description = '<a href="http://bulma.io/">Bulma</a> starting pages and components. Templates are based on Bulma 0.63.'
-    	f.author = 'Matt Savard';
+        f.description = '<a href="http://bulma.io/">Bulma</a> starting pages and components. Templates are based on Bulma 0.63.'
+        f.author = 'Matt Savard';
 
-    	f.ignore_css_files = [/(^|\/)bulma\.(css|less)/i, /(^|\/)bulma\.min\.(css|less)/i, /(^|\/)font(\-|)awesome(\.min|)\.(css|less)/i];
-		 
+        f.ignore_css_files = [/(^|\/)bulma\.(css|less)/i, /(^|\/)bulma\.min\.(css|less)/i, /(^|\/)font(\-|)awesome(\.min|)\.(css|less)/i];
+         
         f.setScriptFileByScriptTagId('plugin-bulma'); //get url if script is included directly into edit.html
         pinegrow.addFramework(f);
 
+        var bm = new PgToggleButtonMaker();
 
-
-    	var textColorOptions = [
+        var textColorOptions = [
             {key: 'has-text-white',name:'White',html:'<div class="pg-tb-button" style="border-radius:3px;width:18px;height:16px;background-color:hsl(0,0%,100%);"></div>'},
-    		{key: 'has-text-black',name:'Black',html:'<div class="pg-tb-button" style="border-radius:3px;width:18px;height:16px;background-color:hsl(0,0%,4%);"></div>'},
-    		{key: 'has-text-light',name:'Light',html:'<div class="pg-tb-button" style="border-radius:3px;width:18px;height:16px;background-color:hsl(0,0%,96%);"></div>'},
-    		{key: 'has-text-dark',name:'Dark',html:'<div class="pg-tb-button" style="border-radius:3px;width:18px;height:16px;background-color:hsl(0,0%,21%);"></div>'},
-    		{key: 'has-text-primary',name:'Primary',html:'<div class="pg-tb-button" style="border-radius:3px;width:18px;height:16px;background-color:hsl(171,100%,41%);"></div>'},
-    		{key: 'has-text-info',name:'Info',html:'<div class="pg-tb-button" style="border-radius:3px;width:18px;height:16px;background-color:hsl(204,86%,53%);"></div>'},
-    		{key: 'has-text-success',name:'Success',html:'<div class="pg-tb-button" style="border-radius:3px;width:18px;height:16px;background-color:hsl(141,71%,48%);"></div>'},
-    		{key: 'has-text-warning',name:'Warning',html:'<div class="pg-tb-button" style="border-radius:3px;width:18px;height:16px;background-color:hsl(48,100%,67%);"></div>'},
-    		{key: 'has-text-danger',name:'Danger',html:'<div class="pg-tb-button" style="border-radius:3px;width:18px;height:16px;background-color:hsl(348,100%,61%);"></div>'},
-    		{key: 'has-text-black-bis',name:'Midnight Black',html:'<div class="pg-tb-button" style="border-radius:3px;width:18px;height:16px;background-color:hsl(0,0%,7%);"></div>'},
-    		{key: 'has-text-black-ter',name:'Dark Black',html:'<div class="pg-tb-button" style="border-radius:3px;width:18px;height:16px;background-color:hsl(0,0%,14%);"></div>'},
-    		{key: 'has-text-grey-darker',name:'Darker Grey',html:'<div class="pg-tb-button" style="border-radius:3px;width:18px;height:16px;background-color:hsl(0,0%,21%);"></div>'},
-    		{key: 'has-text-grey-dark',name:'Dark Grey',html:'<div class="pg-tb-button" style="border-radius:3px;width:18px;height:16px;background-color:hsl(0,0%,29%);"></div>'},
-    		{key: 'has-text-grey',name:'Grey',html:'<div class="pg-tb-button" style="border-radius:3px;width:18px;height:16px;background-color:hsl(0,0%,48%);"></div>'},
-    		{key: 'has-text-grey-light',name:'Light Grey',html:'<div class="pg-tb-button" style="border-radius:3px;width:18px;height:16px;background-color:hsl(0,0%,71%);"></div>'},
-    		{key: 'has-text-grey-lighter',name:'Lighter Grey',html:'<div class="pg-tb-button" style="border-radius:3px;width:18px;height:16px;background-color:hsl(0,0%,86%);"></div>'},
-    		{key: 'has-text-white-ter',name:'Lightest Grey',html:'<div class="pg-tb-button" style="border-radius:3px;width:18px;height:16px;background-color:hsl(0,0%,96%);"></div>'},
-    		{key: 'has-text-white-bis',name:'Almost White',html:'<div class="pg-tb-button" style="border-radius:3px;width:18px;height:16px;background-color:hsl(0,0%,98%);"></div>'}
+            {key: 'has-text-black',name:'Black',html:'<div class="pg-tb-button" style="border-radius:3px;width:18px;height:16px;background-color:hsl(0,0%,4%);"></div>'},
+            {key: 'has-text-light',name:'Light',html:'<div class="pg-tb-button" style="border-radius:3px;width:18px;height:16px;background-color:hsl(0,0%,96%);"></div>'},
+            {key: 'has-text-dark',name:'Dark',html:'<div class="pg-tb-button" style="border-radius:3px;width:18px;height:16px;background-color:hsl(0,0%,21%);"></div>'},
+            {key: 'has-text-primary',name:'Primary',html:'<div class="pg-tb-button" style="border-radius:3px;width:18px;height:16px;background-color:hsl(171,100%,41%);"></div>'},
+            {key: 'has-text-info',name:'Info',html:'<div class="pg-tb-button" style="border-radius:3px;width:18px;height:16px;background-color:hsl(204,86%,53%);"></div>'},
+            {key: 'has-text-success',name:'Success',html:'<div class="pg-tb-button" style="border-radius:3px;width:18px;height:16px;background-color:hsl(141,71%,48%);"></div>'},
+            {key: 'has-text-warning',name:'Warning',html:'<div class="pg-tb-button" style="border-radius:3px;width:18px;height:16px;background-color:hsl(48,100%,67%);"></div>'},
+            {key: 'has-text-danger',name:'Danger',html:'<div class="pg-tb-button" style="border-radius:3px;width:18px;height:16px;background-color:hsl(348,100%,61%);"></div>'},
+            {key: 'has-text-black-bis',name:'Midnight Black',html:'<div class="pg-tb-button" style="border-radius:3px;width:18px;height:16px;background-color:hsl(0,0%,7%);"></div>'},
+            {key: 'has-text-black-ter',name:'Dark Black',html:'<div class="pg-tb-button" style="border-radius:3px;width:18px;height:16px;background-color:hsl(0,0%,14%);"></div>'},
+            {key: 'has-text-grey-darker',name:'Darker Grey',html:'<div class="pg-tb-button" style="border-radius:3px;width:18px;height:16px;background-color:hsl(0,0%,21%);"></div>'},
+            {key: 'has-text-grey-dark',name:'Dark Grey',html:'<div class="pg-tb-button" style="border-radius:3px;width:18px;height:16px;background-color:hsl(0,0%,29%);"></div>'},
+            {key: 'has-text-grey',name:'Grey',html:'<div class="pg-tb-button" style="border-radius:3px;width:18px;height:16px;background-color:hsl(0,0%,48%);"></div>'},
+            {key: 'has-text-grey-light',name:'Light Grey',html:'<div class="pg-tb-button" style="border-radius:3px;width:18px;height:16px;background-color:hsl(0,0%,71%);"></div>'},
+            {key: 'has-text-grey-lighter',name:'Lighter Grey',html:'<div class="pg-tb-button" style="border-radius:3px;width:18px;height:16px;background-color:hsl(0,0%,86%);"></div>'},
+            {key: 'has-text-white-ter',name:'Lightest Grey',html:'<div class="pg-tb-button" style="border-radius:3px;width:18px;height:16px;background-color:hsl(0,0%,96%);"></div>'},
+            {key: 'has-text-white-bis',name:'Almost White',html:'<div class="pg-tb-button" style="border-radius:3px;width:18px;height:16px;background-color:hsl(0,0%,98%);"></div>'}
         ];
 
         var bgColorOptions = [
-	        {key: 'is-white',name:'White',html:'<div class="pg-tb-button" style="border-radius:3px;width:18px;height:16px;background-color:hsl(0,0%,100%);"></div>'},
-    		{key: 'is-light',name:'Light',html:'<div class="pg-tb-button" style="border-radius:3px;width:18px;height:16px;background-color:hsl(0,0%,96%);"></div>'},
-    		{key: 'is-dark',name:'Dark',html:'<div class="pg-tb-button" style="border-radius:3px;width:18px;height:16px;background-color:hsl(0,0%,21%);"></div>'},
-    		{key: 'is-black',name:'Black',html:'<div class="pg-tb-button" style="border-radius:3px;width:18px;height:16px;background-color:hsl(0,0%,4%);"></div>'},
-    		{key: 'is-primary',name:'Primary',html:'<div class="pg-tb-button" style="border-radius:3px;width:18px;height:16px;background-color:hsl(171,100%,41%);"></div>'},
-    		{key: 'is-link',name:'Info',html:'<div class="pg-tb-button" style="border-radius:3px;width:18px;height:16px;background-color:hsl(217,71%,53%);"></div>'},
-    		{key: 'is-info',name:'Info',html:'<div class="pg-tb-button" style="border-radius:3px;width:18px;height:16px;background-color:hsl(204,86%,53%);"></div>'},
-    		{key: 'is-success',name:'Success',html:'<div class="pg-tb-button" style="border-radius:3px;width:18px;height:16px;background-color:hsl(141,71%,48%);"></div>'},
-    		{key: 'is-warning',name:'Warning',html:'<div class="pg-tb-button" style="border-radius:3px;width:18px;height:16px;background-color:hsl(48,100%,67%);"></div>'},
-    		{key: 'is-danger',name:'Danger',html:'<div class="pg-tb-button" style="border-radius:3px;width:18px;height:16px;background-color:hsl(348,100%,61%);"></div>'},
+            {key: 'is-white',name:'White',html:'<div class="pg-tb-button" style="border-radius:3px;width:18px;height:16px;background-color:hsl(0,0%,100%);"></div>'},
+            {key: 'is-light',name:'Light',html:'<div class="pg-tb-button" style="border-radius:3px;width:18px;height:16px;background-color:hsl(0,0%,96%);"></div>'},
+            {key: 'is-dark',name:'Dark',html:'<div class="pg-tb-button" style="border-radius:3px;width:18px;height:16px;background-color:hsl(0,0%,21%);"></div>'},
+            {key: 'is-black',name:'Black',html:'<div class="pg-tb-button" style="border-radius:3px;width:18px;height:16px;background-color:hsl(0,0%,4%);"></div>'},
+            {key: 'is-primary',name:'Primary',html:'<div class="pg-tb-button" style="border-radius:3px;width:18px;height:16px;background-color:hsl(171,100%,41%);"></div>'},
+            {key: 'is-link',name:'Info',html:'<div class="pg-tb-button" style="border-radius:3px;width:18px;height:16px;background-color:hsl(217,71%,53%);"></div>'},
+            {key: 'is-info',name:'Info',html:'<div class="pg-tb-button" style="border-radius:3px;width:18px;height:16px;background-color:hsl(204,86%,53%);"></div>'},
+            {key: 'is-success',name:'Success',html:'<div class="pg-tb-button" style="border-radius:3px;width:18px;height:16px;background-color:hsl(141,71%,48%);"></div>'},
+            {key: 'is-warning',name:'Warning',html:'<div class="pg-tb-button" style="border-radius:3px;width:18px;height:16px;background-color:hsl(48,100%,67%);"></div>'},
+            {key: 'is-danger',name:'Danger',html:'<div class="pg-tb-button" style="border-radius:3px;width:18px;height:16px;background-color:hsl(348,100%,61%);"></div>'},
         ];
 
         var primaryColorOptions = [
@@ -60,7 +60,7 @@ $(function() {
             {key: 'is-warning',name:'Warning',html:'<div class="pg-tb-button" style="border-radius:3px;width:18px;height:16px;background-color:hsl(48,100%,67%);"></div>'},
             {key: 'is-danger',name:'Danger',html:'<div class="pg-tb-button" style="border-radius:3px;width:18px;height:16px;background-color:hsl(348,100%,61%);"></div>'},
         ];
-    	
+        
 
         
         // Button
@@ -75,31 +75,30 @@ $(function() {
             'Bulma.button' : {
                 name : 'Button options',
                 fields : {
-                	'Bulma.button.value' :{
-                		type: 'text',
-                		name: 'Value',
-							
-                		action: 'element_html'
-                	},
+                    'Bulma.button.value' :{
+                        type: 'text',
+                        name: 'Text',
+                        action: 'element_html'
+                    },
                     'Bulma.button.size' : {
                         type : 'select',
                         action: 'apply_class',
                         show_empty: true,
-							  toggle_buttons: true,
+                        toggle_buttons: true,
                         name: 'Button size',
                         options: [
-                            {key: 'is-small', name: "Small",html:'<div style="color:#fff;font-size:10px;padding: 2px 16px;border-radius: 4px;background-color:#4D4D4D;">S</div>'},
-                            {key: 'is-medium', name: "Medium",html:'<div style="color:#fff;font-size:10px;padding: 2px 16px;border-radius: 4px;background-color:#4D4D4D;">M</div>'},
-                            {key: 'is-large', name: "Large",html:'<div style="color:#fff;font-size:10px;padding: 2px 16px;border-radius: 4px;background-color:#4D4D4D;">L</div>'},
+                            {key: 'is-small', name: "Small",html: bm.makeText('S',       { attributes: { 'title': 'Small'  } })},
+                            {key: 'is-medium', name: "Medium",html: bm.makeText('M',       { attributes: { 'title': 'Medium'  } })},
+                            {key: 'is-large', name: "Large",html: bm.makeText('L',       { attributes: { 'title': 'Large'  } })}
                         ]
                     },
                     'Bulma.button.color' : {
-                    	type : 'select',
-                    	action: 'apply_class',
-                    	show_empty: true,
-                    	name: 'Button Color',
-                    	toggle_buttons: true,
-                    	options: bgColorOptions
+                        type : 'select',
+                        action: 'apply_class',
+                        show_empty: true,
+                        name: 'Button Color',
+                        toggle_buttons: true,
+                        options: bgColorOptions
                     },
                     'Bulma.button.outlined' : {
                         type : 'checkbox',
@@ -126,23 +125,24 @@ $(function() {
                         name: 'Static?'
                     },
                     'Bulma.button.states' : {
-                    	type: 'select',
-                    	action: 'apply_class',
-                    	show_empty: true,
-                    	name: 'Button State',
-                    	options: [
-                            {key: 'is-active', name: 'Active'},
-                    		{key: 'is-hovered', name: 'Hovered'},
-                    		{key: 'is-focused', name: 'Focused'},
-                    		{key: 'is-loading', name: 'Loading'}
-                    	]
+                        type: 'select',
+                        action: 'apply_class',
+                        show_empty: true,
+                        toggle_buttons: true,
+                        name: 'Button State',
+                        options: [
+                            {key: 'is-active', name: 'Active', html: bm.makeText('Active',       { attributes: { 'title': 'Active'  } })},
+                            {key: 'is-hovered', name: 'Hovered', html: bm.makeText('Hover',       { attributes: { 'title': 'Hovered'  } })},
+                            {key: 'is-focused', name: 'Focused', html: bm.makeText('Focus',       { attributes: { 'title': 'Focused'  } })},
+                            {key: 'is-loading', name: 'Loading', html: bm.makeText('Load',       { attributes: { 'title': 'Loading'  } })}
+                        ]
                     },
                     'Bulma.button.disabled' :{
-                    	type: 'checkbox',
-                    	action: 'element_attribute',
-                    	attribute: 'disabled',
-                    	name: 'Disabled?',
-                    	value: 'disabled'
+                        type: 'checkbox',
+                        action: 'element_attribute',
+                        attribute: 'disabled',
+                        name: 'Disabled?',
+                        value: 'disabled'
                     }
                     
                 }
@@ -168,15 +168,6 @@ $(function() {
                         show_empty: true,
                         name: 'Column size',
                         options: [
-                            {key: 'is-one-quarter', name: "1/4"},
-                            {key: 'is-half', name: "1/2"},
-                            {key: 'is-three-quarters', name: "3/4"},
-                            {key: 'is-one-third', name: "1/3"},
-                            {key: 'is-two-thirds', name: "2/3"},
-                            {key: 'is-one-fifth', name: "1/5"},
-                            {key: 'is-two-fifths', name: "2/5"},
-                            {key: 'is-three-fifths', name: "3/5"},
-                            {key: 'is-four-fifths', name: "4/5"},
                             {key: 'is-1', name: "1"},
                             {key: 'is-2', name: "2"},
                             {key: 'is-3', name: "3"},
@@ -187,7 +178,16 @@ $(function() {
                             {key: 'is-8', name: "8"},
                             {key: 'is-9', name: "9"},
                             {key: 'is-10', name: "10"},
-                            {key: 'is-11', name: "11"}
+                            {key: 'is-11', name: "11"},
+                            {key: 'is-one-quarter', name: "1/4"},
+                            {key: 'is-half', name: "1/2"},
+                            {key: 'is-three-quarters', name: "3/4"},
+                            {key: 'is-one-third', name: "1/3"},
+                            {key: 'is-two-thirds', name: "2/3"},
+                            {key: 'is-one-fifth', name: "1/5"},
+                            {key: 'is-two-fifths', name: "2/5"},
+                            {key: 'is-three-fifths', name: "3/5"},
+                            {key: 'is-four-fifths', name: "4/5"}
 
                         ]
                     },
@@ -197,15 +197,6 @@ $(function() {
                         show_empty: true,
                         name: 'Column offset',
                         options: [
-                            {key: 'is-offset-one-quarter', name: "1/4"},
-                            {key: 'is-offset-half', name: "1/2"},
-                            {key: 'is-offset-three-quarters', name: "3/4"},
-                            {key: 'is-offset-one-third', name: "1/3"},
-                            {key: 'is-offset-two-thirds', name: "2/3"},
-                            {key: 'is-offset-one-fifth', name: "1/5"},
-                            {key: 'is-offset-two-fifths', name: "2/5"},
-                            {key: 'is-offset-three-fifths', name: "3/5"},
-                            {key: 'is-offset-four-fifths', name: "4/5"},
                             {key: 'is-offset-1', name: "1"},
                             {key: 'is-offset-2', name: "2"},
                             {key: 'is-offset-3', name: "3"},
@@ -216,7 +207,16 @@ $(function() {
                             {key: 'is-offset-8', name: "8"},
                             {key: 'is-offset-9', name: "9"},
                             {key: 'is-offset-10', name: "10"},
-                            {key: 'is-offset-11', name: "11"}
+                            {key: 'is-offset-11', name: "11"},
+                            {key: 'is-offset-one-quarter', name: "1/4"},
+                            {key: 'is-offset-half', name: "1/2"},
+                            {key: 'is-offset-three-quarters', name: "3/4"},
+                            {key: 'is-offset-one-third', name: "1/3"},
+                            {key: 'is-offset-two-thirds', name: "2/3"},
+                            {key: 'is-offset-one-fifth', name: "1/5"},
+                            {key: 'is-offset-two-fifths', name: "2/5"},
+                            {key: 'is-offset-three-fifths', name: "3/5"},
+                            {key: 'is-offset-four-fifths', name: "4/5"}
 
                         ]
                     },
@@ -239,7 +239,7 @@ $(function() {
         columns.preview_image = 'columns.png';
         columns.preview_size = 'big';
         columns.action_menu = {
-        	add: ['Bulma.column']
+            add: ['Bulma.column']
         };
         columns.code = '<div class="columns"><div class="column"><p>First column</p></div><div class="column"><p>Second Column</p></div></div>';
         columns.tags = 'major';
@@ -285,27 +285,28 @@ $(function() {
         container.code='<div class="container"></div>';
 
         container.sections = {
-        	'Bulma.container' : {
-        		name: 'Container options',
-        		fields: {
-        			'Bulma.container.fluid' :{
-        				 type : 'checkbox',
+            'Bulma.container' : {
+                name: 'Container options',
+                fields: {
+                    'Bulma.container.fluid' :{
+                         type : 'checkbox',
                         action: 'apply_class',
                         value: 'is-fluid',
                         name: 'Fluid?'
-        			},
-        			'Bulma.container.breakpoint' :{
-        				type: 'select',
-        				show_empty: true,
-        				action: 'apply_class',
-        				name: 'Breakpoint',
-        				options: [
-        					{key:'is-widescreen',name:'Widescreen'},
-        					{key:'is-fullhd',name:'Full HD'}
-        				]
-        			}
-        		}
-        	}
+                    },
+                    'Bulma.container.breakpoint' :{
+                        type: 'select',
+                        show_empty: true,
+                        toggle_buttons: true,
+                        action: 'apply_class',
+                        name: 'Breakpoint',
+                        options: [
+                            {key:'is-widescreen',name:'Widescreen', html: bm.makeText('Wide',       { attributes: { 'title': 'Widescreen'  } })},
+                            {key:'is-fullhd',name:'Full HD', html: bm.makeText('Full HD',       { attributes: { 'title': 'Full HD'  } })}
+                        ]
+                    }
+                }
+            }
         };
         f.addComponentType(container);
 
@@ -332,64 +333,64 @@ $(function() {
 </nav>';
         level.tags = "major";
         level.action_menu = {
-        	add: ['Bulma.levelitem']
+            add: ['Bulma.levelitem']
         };
         level.sections = {
-        	'Bulma.level': {
-        		name: 'Level Options',
-        		fields: {
-        			'Bulma.level.mobile': {
-        				type: 'checkbox',
-        				action: 'apply_class',
-        				value: 'is-mobile',
-        				name: 'Mobile?'
-        			},
-        			'Bulma.level.left': {
-        				type: 'checkbox',
-        				value: 1,
-        				name: 'Add Left Side',
-        				action: 'custom',
-        				get_value: function (pgel) {
-                    		return pgel.find('div.level-left').length > 0 ? "1" : null;
-                    	},
-                    	set_value: function (pgel, value, values, oldValue, eventType) {
-                    		crsaWillChangeDom();
-                    		var pgb = pgel.findOne('div.level-left');
-                    		if (value) {
-                    			if (!pgb) {
-                    				pgb = pgCreateNodeFromHtml('<div class="level-left"></div>').html('<div class="level-item">Level Item</div>');
-                    				pgel.prepend(pgb);
-  		            			}
-                    		} else {
-                    			pgb.remove();
-                    		}
-                    		return value;
-                    	}
-        			},
-        			'Bulma.level.right': {
-        				type: 'checkbox',
-        				value: 1,
-        				name: 'Add Right Side',
-        				action: 'custom',
-        				get_value: function (pgel) {
-                    		return pgel.find('div.level-right').length > 0 ? "1" : null;
-                    	},
-                    	set_value: function (pgel, value, values, oldValue, eventType) {
-                    		crsaWillChangeDom();
-                    		var pgb = pgel.findOne('div.level-right');
-                    		if (value) {
-                    			if (!pgb) {
-                    				pgb = pgCreateNodeFromHtml('<div class="level-right"></div>').html('<div class="level-item">Level Item</div>');
-                    				pgel.append(pgb);
-  		            			}
-                    		} else {
-                    			pgb.remove();
-                    		}
-                    		return value;
-                    	}
-        			}
-        		}
-        	}
+            'Bulma.level': {
+                name: 'Level Options',
+                fields: {
+                    'Bulma.level.mobile': {
+                        type: 'checkbox',
+                        action: 'apply_class',
+                        value: 'is-mobile',
+                        name: 'Mobile?'
+                    },
+                    'Bulma.level.left': {
+                        type: 'checkbox',
+                        value: 1,
+                        name: 'Add Left Side',
+                        action: 'custom',
+                        get_value: function (pgel) {
+                            return pgel.find('div.level-left').length > 0 ? "1" : null;
+                        },
+                        set_value: function (pgel, value, values, oldValue, eventType) {
+                            crsaWillChangeDom();
+                            var pgb = pgel.findOne('div.level-left');
+                            if (value) {
+                                if (!pgb) {
+                                    pgb = pgCreateNodeFromHtml('<div class="level-left"></div>').html('<div class="level-item">Level Item</div>');
+                                    pgel.prepend(pgb);
+                                }
+                            } else {
+                                pgb.remove();
+                            }
+                            return value;
+                        }
+                    },
+                    'Bulma.level.right': {
+                        type: 'checkbox',
+                        value: 1,
+                        name: 'Add Right Side',
+                        action: 'custom',
+                        get_value: function (pgel) {
+                            return pgel.find('div.level-right').length > 0 ? "1" : null;
+                        },
+                        set_value: function (pgel, value, values, oldValue, eventType) {
+                            crsaWillChangeDom();
+                            var pgb = pgel.findOne('div.level-right');
+                            if (value) {
+                                if (!pgb) {
+                                    pgb = pgCreateNodeFromHtml('<div class="level-right"></div>').html('<div class="level-item">Level Item</div>');
+                                    pgel.append(pgb);
+                                }
+                            } else {
+                                pgb.remove();
+                            }
+                            return value;
+                        }
+                    }
+                }
+            }
         };
         f.addComponentType(level);
 
@@ -436,7 +437,7 @@ $(function() {
 
 
         // menu
-		var menu = new PgComponentType("Bulma.menu","Menu");
+        var menu = new PgComponentType("Bulma.menu","Menu");
         menu.selector = '.menu';
         menu.parent_selector = 'body';
         menu.code = '<aside class="menu">\
@@ -482,40 +483,42 @@ $(function() {
         icon.parent_selector = 'body';
         icon.code = '<span class="icon"><i class="fas fa-users"></i></span>';
         icon.sections = {
-        	'Bulma.icon': {
-        		name: 'Icon Options',
-        		fields: {
-        			'Bulma.icon.color': {
-        				type: 'select',
-        				action: 'apply_class',
-        				name: 'Color',
-        				toggle_buttons: true,
-        				options: textColorOptions,
-        				show_empty: true
-        			},
-        			'Bulma.icon.size': {
-        				type: 'select',
-        				action: 'apply_class',
-        				name: 'Container Size',
-        				show_empty: true,
-        				options: [
-        					{key:'is-small',name:'Small'},
-        					{key:'is-medium',name:'Medium'},
-        					{key:'is-large',name:'Large'},
-        				]
-        			},
+            'Bulma.icon': {
+                name: 'Icon Options',
+                fields: {
+                    'Bulma.icon.color': {
+                        type: 'select',
+                        action: 'apply_class',
+                        name: 'Color',
+                        toggle_buttons: true,
+                        options: textColorOptions,
+                        show_empty: true
+                    },
+                    'Bulma.icon.size': {
+                        type: 'select',
+                        action: 'apply_class',
+                        name: 'Container Size',
+                        show_empty: true,
+                        toggle_buttons: true,
+                        options: [
+                            {key:'is-small',name:'Small',html: bm.makeText('S')},
+                            {key:'is-medium',name:'Medium', html: bm.makeText('M')},
+                            {key:'is-large',name:'Large', html: bm.makeText('L')},
+                        ]
+                    },
                     'Bulma.icon.position': {
                         type: 'select',
                         action: 'apply_class',
                         name: 'Position',
                         show_empty: true,
+                        toggle_buttons: true,
                         options: [
-                            {key:'is-left',name:'Left'},
-                            {key:'is-right',name:'Right'}                            
+                            {key:'is-left',name:'Left', html: bm.makeIcon('float-left')},
+                            {key:'is-right',name:'Right', html: bm.makeIcon('float-right')}                            
                         ]
                     }
-        		}
-        	}
+                }
+            }
         };
         f.addComponentType(icon);
 
@@ -567,17 +570,17 @@ f.addComponentType(mediaobject);
         breadcrumb.code = '<nav class="breadcrumb" aria-label="breadcrumbs"><ul><li><a href="#"><span class="icon is-small"><i class="fas fa-home"></i></span><span>Bulma</span></a></li><li><a href="#">Documentation</a></li><li><a href="#">Components</a></li><li class="is-active"><a href="#" aria-current="page">Breadcrumb</a></li></ul></nav';
         breadcrumb.tags = 'major';
         breadcrumb.action_menu = {
-        	add: ['Bulma.breadcrumbLink'],
-        	'on_add' : function(pgel, pgnew, newdef,prepend){
-        		var pgul = pgel.findOne('> ul');
-        		if (!pgul){
-        			pgul=pgCreateNodeFromHtml('<ul><li><a href="#">Link</a></li></ul>');
-        			pgel.append(pgul);
-        		} else {
-        			pgul.append(pgnew);
-        		}
-        		
-        	}
+            add: ['Bulma.breadcrumbLink'],
+            'on_add' : function(pgel, pgnew, newdef,prepend){
+                var pgul = pgel.findOne('> ul');
+                if (!pgul){
+                    pgul=pgCreateNodeFromHtml('<ul><li><a href="#">Link</a></li></ul>');
+                    pgel.append(pgul);
+                } else {
+                    pgul.append(pgnew);
+                }
+                
+            }
         };
         breadcrumb.sections = {
             'Bulma.breadcrumb' : {
@@ -587,10 +590,12 @@ f.addComponentType(mediaobject);
                         type : 'select',
                         action: 'apply_class',
                         show_empty: true,
+                        toggle_buttons: true,
                         name: 'Alignment',
                         options: [
-                            {key: 'is-centered', name: "Centered"},
-                            {key: 'is-right', name: "Right"}                            
+                            {key: '', name: "Left", html: bm.makeIcon('align-left')},
+                            {key: 'is-centered', name: "Centered", html: bm.makeIcon('align-center')},
+                            {key: 'is-right', name: "Right", html: bm.makeIcon('align-right')}                            
                         ]
                     },
                     'Bulma.breadcrumb.seperator' : {
@@ -609,11 +614,12 @@ f.addComponentType(mediaobject);
                         type : 'select',
                         action: 'apply_class',
                         show_empty: true,
+                        toggle_buttons: true,
                         name: 'Size',
                         options: [
-                            {key: 'is-small', name: "Small"},
-                            {key: 'is-medium', name: "Medium"},                            
-                            {key: 'is-large', name: "Large"}                            
+                            {key: 'is-small', name: "Small", html: bm.makeText('S')},
+                            {key: 'is-medium', name: "Medium", html: bm.makeText('M')},                            
+                            {key: 'is-large', name: "Large", html: bm.makeText('L')}                            
                         ]
                     }
                     
@@ -632,77 +638,78 @@ f.addComponentType(mediaobject);
             'Bulma.hero' : {
                 name : 'Hero options',
                 fields : {
-                	'Color': {
-                		type: 'select',
-                		action: 'apply_class',
-                		show_empty: true,
-                		name: 'Color',
-                		toggle_buttons: true,
-                		options: bgColorOptions
-                	},
-                	'Bold': {
-                		type: 'checkbox',
-                		action: 'apply_class',
-                		value: 'is-bold',
-                		name: 'Gradient?'
-                	},
-                	'Size': {
-                		type: 'select',
-                		action: 'apply_class',
-                		name: 'Size',
-                		show_empty: true,
-                		options: [
-                        {key: 'is-small',name:'Small'},
-                			{key: 'is-medium',name:'Medium'},
-                			{key: 'is-large',name:'Large'},
-                			{key: 'is-fullheight',name:'Full Height'},
-                		]
-                	},
-                	'Bulma.header': {
-                		type: 'checkbox',
-                		value: 1,
-                		name: 'Header?',
-                		action: 'custom',
-        				get_value: function (pgel) {
-                    		return pgel.find('div.hero-head').length > 0 ? "1" : null;
-                    	},
-                    	set_value: function (pgel, value, values, oldValue, eventType) {
-                    		crsaWillChangeDom();
-                    		var pgb = pgel.findOne('div.hero-head');
-                    		if (value) {
-                    			if (!pgb) {
-                    				pgb = pgCreateNodeFromHtml('<div class="hero-head"></div>').html('<nav class="navbar"><div class="container"><div class="navbar-brand"><a class="navbar-item"><img src="https://bulma.io/images/bulma-type-white.png" alt="Logo"></a><span class="navbar-burger burger" data-target="navbarMenuHeroA"><span></span><span></span><span></span></span></div><div id="navbarMenuHeroA" class="navbar-menu"><div class="navbar-end"><a class="navbar-item is-active">Home</a><a class="navbar-item">Examples</a><a class="navbar-item">Documentation</a><span class="navbar-item"><a class="button is-primary is-inverted"><span class="icon"><i class="fab fa-github"></i></span><span>Download</span></a></span></div></div></div></nav>');
-                    				pgel.prepend(pgb);
-  		            			}
-                    		} else {
-                    			pgb.remove();
-                    		}
-                    		return value;
-                    	}
-                	},
-                	'footer': {
-                		type: 'checkbox',
-                		value: 1,
-                		name: 'Footer?',
-        				action: 'custom',
-        				get_value: function (pgel) {
-                    		return pgel.find('div.hero-foot').length > 0 ? "1" : null;
-                    	},
-                    	set_value: function (pgel, value, values, oldValue, eventType) {
-                    		crsaWillChangeDom();
-                    		var pgb = pgel.findOne('div.hero-foot');
-                    		if (value) {
-                    			if (!pgb) {
-                    				pgb = pgCreateNodeFromHtml('<div class="hero-foot"></div>').html('<div class="hero-foot"><nav class="tabs"><div class="container"><ul><li class="is-active"><a>Overview</a></li><li><a>Modifiers</a></li><li><a>Grid</a></li><li><a>Elements</a></li><li><a>Components</a></li><li><a>Layout</a></li></ul></div></nav></div>');
-                    				pgel.append(pgb);
-  		            			}
-                    		} else {
-                    			pgb.remove();
-                    		}
-                    		return value;
-                    	}
-        				        		
-                	}
+                    'Color': {
+                        type: 'select',
+                        action: 'apply_class',
+                        show_empty: true,
+                        name: 'Color',
+                        toggle_buttons: true,
+                        options: bgColorOptions
+                    },
+                    'Bold': {
+                        type: 'checkbox',
+                        action: 'apply_class',
+                        value: 'is-bold',
+                        name: 'Gradient?'
+                    },
+                    'Size': {
+                        type: 'select',
+                        action: 'apply_class',
+                        name: 'Size',
+                        show_empty: true,
+                        toggle_buttons: true,
+                        options: [
+                            {key: 'is-small',name:'Small', html: bm.makeText('S')},
+                            {key: 'is-medium',name:'Medium', html: bm.makeText('M')},
+                            {key: 'is-large',name:'Large', html: bm.makeText('L')},
+                            {key: 'is-fullheight',name:'Full Height', html: bm.makeText('Full')},
+                        ]
+                    },
+                    'Bulma.header': {
+                        type: 'checkbox',
+                        value: 1,
+                        name: 'Header?',
+                        action: 'custom',
+                        get_value: function (pgel) {
+                            return pgel.find('div.hero-head').length > 0 ? "1" : null;
+                        },
+                        set_value: function (pgel, value, values, oldValue, eventType) {
+                            crsaWillChangeDom();
+                            var pgb = pgel.findOne('div.hero-head');
+                            if (value) {
+                                if (!pgb) {
+                                    pgb = pgCreateNodeFromHtml('<div class="hero-head"></div>').html('<nav class="navbar"><div class="container"><div class="navbar-brand"><a class="navbar-item"><img src="https://bulma.io/images/bulma-type-white.png" alt="Logo"></a><span class="navbar-burger burger" data-target="navbarMenuHeroA"><span></span><span></span><span></span></span></div><div id="navbarMenuHeroA" class="navbar-menu"><div class="navbar-end"><a class="navbar-item is-active">Home</a><a class="navbar-item">Examples</a><a class="navbar-item">Documentation</a><span class="navbar-item"><a class="button is-primary is-inverted"><span class="icon"><i class="fab fa-github"></i></span><span>Download</span></a></span></div></div></div></nav>');
+                                    pgel.prepend(pgb);
+                                }
+                            } else {
+                                pgb.remove();
+                            }
+                            return value;
+                        }
+                    },
+                    'footer': {
+                        type: 'checkbox',
+                        value: 1,
+                        name: 'Footer?',
+                        action: 'custom',
+                        get_value: function (pgel) {
+                            return pgel.find('div.hero-foot').length > 0 ? "1" : null;
+                        },
+                        set_value: function (pgel, value, values, oldValue, eventType) {
+                            crsaWillChangeDom();
+                            var pgb = pgel.findOne('div.hero-foot');
+                            if (value) {
+                                if (!pgb) {
+                                    pgb = pgCreateNodeFromHtml('<div class="hero-foot"></div>').html('<div class="hero-foot"><nav class="tabs"><div class="container"><ul><li class="is-active"><a>Overview</a></li><li><a>Modifiers</a></li><li><a>Grid</a></li><li><a>Elements</a></li><li><a>Components</a></li><li><a>Layout</a></li></ul></div></nav></div>');
+                                    pgel.append(pgb);
+                                }
+                            } else {
+                                pgb.remove();
+                            }
+                            return value;
+                        }
+                                        
+                    }
                 }
             }
         };
@@ -718,14 +725,15 @@ f.addComponentType(mediaobject);
                 name : 'Section options',
                 fields : {
                     'Spacing': {
-                    	type: 'select',
-                    	name: 'Spacing',
-                    	show_empty: true,
-                    	action: 'apply_class',
-                    	options: [
-                    		{key:'is-medium',name:'Medium'},
-                    		{key:'is-large',name:'Large'},
-                    	]
+                        type: 'select',
+                        name: 'Spacing',
+                        show_empty: true,
+                        toggle_buttons: true,
+                        action: 'apply_class',
+                        options: [
+                            {key:'is-medium',name:'Medium', html: bm.makeText('Med')},
+                            {key:'is-large',name:'Large', html: bm.makeText('Lg')}
+                        ]
                     }
 
                 }
@@ -739,14 +747,14 @@ f.addComponentType(mediaobject);
         'selector': '.card',
         'preview_image': 'card.png',
         action_menu : {
-        	add: ['Bulma.cardHeader','Bulma.cardFooter'],
-        	'on_add' : function(pgel, pgnew, newdef,prepend){
-        		if(newdef.type == 'Bulma.cardHeader'){
-        			pgel.prepend(pgnew);	
-        		} else {
-        			pgel.append(pgnew);
-        		}
-        	}
+            add: ['Bulma.cardHeader','Bulma.cardFooter'],
+            'on_add' : function(pgel, pgnew, newdef,prepend){
+                if(newdef.type == 'Bulma.cardHeader'){
+                    pgel.prepend(pgnew);    
+                } else {
+                    pgel.append(pgnew);
+                }
+            }
         },
         'code': '<div class="card">\
         <header class="card-header">\
@@ -853,9 +861,9 @@ f.addComponentType(mediaobject);
             priority : 2001,
             sections : {
                 textweight : {
-                	name: "Text Options",
-                	fields: {
-                		weight : {
+                    name: "Text Options",
+                    fields: {
+                        weight : {
                         type : 'select',
                         action: 'apply_class',
                         show_empty: true,
@@ -868,94 +876,97 @@ f.addComponentType(mediaobject);
                         ]
                     },
                     textcase : {
-                    	type: 'select',
-                    	action: 'apply_class',
-                    	show_empty: true,
-                    	name: 'Text Case',
-                    	options: [
-                    		{key: 'is-uppercase',name:'Uppercase'},
-                    		{key: 'is-lowercase',name:'Lowercase'},
-                    		{key: 'is-capitalized',name:'Capitalized'},
-                    		{key: 'is-italic',name:'Italic'},
-                    	]
+                        type: 'select',
+                        action: 'apply_class',
+                        show_empty: true,
+                        toggle_buttons: true,
+                        name: 'Text Case',
+                        options: [
+                            {key: 'is-uppercase',name:'Uppercase', html: bm.makeIcon('Transform-uppercase',       { attributes: { 'title': 'Uppercase'  } })},
+                            {key: 'is-lowercase',name:'Lowercase', html: bm.makeIcon('Transform-lowercase',       { attributes: { 'title': 'Lowercase'  } })},
+                            {key: 'is-capitalized',name:'Capitalized', html: bm.makeIcon('sentence-case',       { attributes: { 'title': 'Capitalized'  } })},
+                            {key: 'is-italic',name:'Italic', html: bm.makeIcon('style_italic',       { attributes: { 'title': 'Italic'  } })}
+                        ]
                     },
                     alignment: {
-                    	type: 'select',
-                    	action: 'apply_class',
-                    	show_empty: true,
-                    	name: 'Text Alignment',
-                    	options: [
-                    		{key: 'has-text-centered',name:'Centered'},
-                    		{key: 'has-text-justified',name:'Justified'},
-                    		{key: 'has-text-left',name:'Left'},
-                    		{key: 'has-text-right',name:'Right'},
-                    	]
+                        type: 'select',
+                        action: 'apply_class',
+                        show_empty: true,
+                        toggle_buttons: true,
+                        name: 'Text Alignment',
+                        options: [
+                            {key: 'has-text-left',name:'Left', html: bm.makeIcon('align-left')},
+                            {key: 'has-text-right',name:'Right', html: bm.makeIcon('align-right')},
+                            {key: 'has-text-centered',name:'Centered', html: bm.makeIcon('align-center')},
+                            {key: 'has-text-justified',name:'Justified', html: bm.makeIcon('align-full')}
+                        ]
                     },
                      color: {
-                    	type: 'select',
-                    	action: 'apply_class',
-                    	show_empty: true,
-                    	name: 'Text Color',
-                    	toggle_buttons: true,
-                    	options: textColorOptions
+                        type: 'select',
+                        action: 'apply_class',
+                        show_empty: true,
+                        name: 'Text Color',
+                        toggle_buttons: true,
+                        options: textColorOptions
                     },
                     size: {
-                    	type: 'select',
-                    	action: 'apply_class',
-                    	show_empty: true,
-                    	name: 'Text Size',
-                    	options: [
-                    		{key: 'is-size-1',name:'3rem'},
-                    		{key: 'is-size-2',name:'2.5rem'},
-                    		{key: 'is-size-3',name:'2rem'},
-                    		{key: 'is-size-4',name:'1.5rem'},
-                    		{key: 'is-size-5',name:'1.25rem'},
-                    		{key: 'is-size-6',name:'1rem'},
-                    		{key: 'is-size-7',name:'.75rem'},
-                    		
-                    	]
+                        type: 'select',
+                        action: 'apply_class',
+                        show_empty: true,
+                        name: 'Text Size',
+                        options: [
+                            {key: 'is-size-1',name:'1 (big)'},
+                            {key: 'is-size-2',name:'2'},
+                            {key: 'is-size-3',name:'3'},
+                            {key: 'is-size-4',name:'4'},
+                            {key: 'is-size-5',name:'5'},
+                            {key: 'is-size-6',name:'6'},
+                            {key: 'is-size-7',name:'7 (small)'},
+                            
+                        ]
                     }
                 }
             },
             Helpers : {
-            	name: 'Helpers',
-            	fields: {
-            		float: {
-            			type: 'select',
-            			action: 'apply_class',
-            			show_empty: true,
-            			name: 'Float',
-            			options: [
-            				{key: 'is-clearfix',name:'Clear'},
-            				{key: 'is-pulled-left',name:'Pull Left'},
-            				{key: 'is-pulled-right',name:'Pull Right'}
-            			]
-            		},
-            		margin: {
-            			type: 'select',
-            			action: 'apply_class',
-            			show_empty: true,
-            			name: 'Spacing',
-            			options: [
-            				{key: 'is-marginless',name:'No Margins'},
-            				{key: 'is-paddingless',name:'No Padding'}
-            			]
-            		},
-            		other: {
-            			type: 'select',
-            			action: 'apply_class',
-            			show_empty: true,
-            			name: 'Other',
-            			options: [
-            				{key: 'is-overlay',name:'Overlay'},
-            				{key: 'is-clipped',name:'Clipped'},
-            				{key: 'is-radiusless',name:'No Radius'},
-            				{key: 'is-shadowless',name:'No Shadow'},
-            				{key: 'is-unselectable',name:'Unselectable'},
-            				{key: 'is-invisible',name:'Hidden'}
-            			]
-            		}
-            	}
+                name: 'Helpers',
+                fields: {
+                    float: {
+                        type: 'select',
+                        action: 'apply_class',
+                        show_empty: true,
+                        toggle_buttons: true,
+                        name: 'Float',
+                        options: [
+                            {key: 'is-pulled-left',name:'Pull Left', html: bm.makeIcon('float-left',       { attributes: { 'title': 'Pull left'  } })},
+                            {key: 'is-clearfix',name:'Clear', html: bm.makeIcon('float',       { attributes: { 'title': 'Clear fix'  } })},
+                            {key: 'is-pulled-right',name:'Pull Right', html: bm.makeIcon('float-right',       { attributes: { 'title': 'Pull right'  } })}
+                        ]
+                    },
+                    margin: {
+                        type: 'select',
+                        action: 'apply_class',
+                        show_empty: true,
+                        name: 'Spacing',
+                        options: [
+                            {key: 'is-marginless',name:'No Margins'},
+                            {key: 'is-paddingless',name:'No Padding'}
+                        ]
+                    },
+                    other: {
+                        type: 'select',
+                        action: 'apply_class',
+                        show_empty: true,
+                        name: 'Other',
+                        options: [
+                            {key: 'is-overlay',name:'Overlay'},
+                            {key: 'is-clipped',name:'Clipped'},
+                            {key: 'is-radiusless',name:'No Radius'},
+                            {key: 'is-shadowless',name:'No Shadow'},
+                            {key: 'is-unselectable',name:'Unselectable'},
+                            {key: 'is-invisible',name:'Hidden'}
+                        ]
+                    }
+                }
             }
             
             }
@@ -997,34 +1008,35 @@ f.addComponentType(mediaobject);
                         type : 'select',
                         action: 'apply_class',
                         show_empty: true,
+                        toggle_buttons: true,
                         name: 'Message size',
                         options: [
-                            {key: 'is-small', name: "Small"},
-                            {key: 'is-medium', name: "Medium"},
-                            {key: 'is-large', name: "Large"}
+                            {key: 'is-small', name: "Small", html: bm.makeText('S')},
+                            {key: 'is-medium', name: "Medium", html: bm.makeText('M')},
+                            {key: 'is-large', name: "Large", html: bm.makeText('L')}
                         ]
                     },
                     'Bulma.message.header' : {
-                    	type: 'checkbox',
-                    	name: 'Header?',
-                    	value: '1',
-                    	action: 'custom' ,
-                    	get_value: function (pgel) {
-                    		return pgel.find('div.message-header').length > 0 ? "1" : null;
-                    	},
-                    	set_value: function (pgel, value, values, oldValue, eventType) {
-                    		crsaWillChangeDom();
-                    		var pgb = pgel.findOne('div.message-header');
-                    		if (value) {
-                    			if (!pgb) {
-                    				pgb = pgCreateNodeFromHtml('<div class="message-header"></div>').html('<p>change me</p><button class="delete" aria-label="delete"></button>');
-                    				pgel.prepend(pgb);
-  		            			}
-                    		} else {
-                    			pgb.remove();
-                    		}
-                    		return value;
-                    	}
+                        type: 'checkbox',
+                        name: 'Header?',
+                        value: '1',
+                        action: 'custom' ,
+                        get_value: function (pgel) {
+                            return pgel.find('div.message-header').length > 0 ? "1" : null;
+                        },
+                        set_value: function (pgel, value, values, oldValue, eventType) {
+                            crsaWillChangeDom();
+                            var pgb = pgel.findOne('div.message-header');
+                            if (value) {
+                                if (!pgb) {
+                                    pgb = pgCreateNodeFromHtml('<div class="message-header"></div>').html('<p>change me</p><button class="delete" aria-label="delete"></button>');
+                                    pgel.prepend(pgb);
+                                }
+                            } else {
+                                pgb.remove();
+                            }
+                            return value;
+                        }
                     }
                     
                 }
@@ -1037,17 +1049,17 @@ f.addComponentType(mediaobject);
         tabs.selector = '.tabs';
         tabs.parent_selector = 'body';
         tabs.action_menu = {
-        	add: ['Bulma.tab', 'Bulma.icon.tab'],
-        	'on_add' : function(pgel, pgnew, newdef,prepend){
-        		var pgul = pgel.findOne('> ul');
-        		if (!pgul){
-        			pgul=pgCreateNodeFromHtml('<ul><li><a href="#">Tab Link</a></li></ul>');
-        			pgel.append(pgul);
-        		} else {
-        			pgul.append(pgnew);
-        		}
-        		
-        	}
+            add: ['Bulma.tab', 'Bulma.icon.tab'],
+            'on_add' : function(pgel, pgnew, newdef,prepend){
+                var pgul = pgel.findOne('> ul');
+                if (!pgul){
+                    pgul=pgCreateNodeFromHtml('<ul><li><a href="#">Tab Link</a></li></ul>');
+                    pgel.append(pgul);
+                } else {
+                    pgul.append(pgnew);
+                }
+                
+            }
         };
         tabs.preview_image = 'tabs.png';
         tabs.preview_size = 'big';
@@ -1068,21 +1080,24 @@ f.addComponentType(mediaobject);
                         type : 'select',
                         action: 'apply_class',
                         show_empty: true,
+                        toggle_buttons: true,
                         name: 'Tabs Alignment',
                         options: [
-                            {key: 'is-centered', name: "Center"},
-                            {key: 'is-right', name: "Right"}
+                            {key: '', name: "Left", html: bm.makeIcon('align-left')},
+                            {key: 'is-centered', name: "Center", html: bm.makeIcon('align-center')},
+                            {key: 'is-right', name: "Right", html: bm.makeIcon('align-right')}
                         ]
                     },
                     'Bulma.tabs.size' : {
                         type : 'select',
                         action: 'apply_class',
                         show_empty: true,
+                        toggle_buttons: true,
                         name: 'Tabs size',
                         options: [
-                            {key: 'is-small', name: "Small"},
-                            {key: 'is-medium', name: "Medium"},
-                            {key: 'is-large', name: "Large"}
+                            {key: 'is-small', name: "Small", html: bm.makeText('S')},
+                            {key: 'is-medium', name: "Medium", html: bm.makeText('M')},
+                            {key: 'is-large', name: "Large", html: bm.makeText('L')}
                         ]
                     },
                     'Bulma.tabs.boxed' : {
@@ -1115,7 +1130,7 @@ f.addComponentType(mediaobject);
         f.addComponentType(tabs);
 
         // table row
-		var row = new PgComponentType("Bulma.row","Insert Row");
+        var row = new PgComponentType("Bulma.row","Insert Row");
         row.selector = 'tbody';
         row.parent_selector = 'table';
         row.code = '<tr></tr>';
@@ -1162,18 +1177,18 @@ f.addComponentType(mediaobject);
                         ]
                     },
                     'Bulma.image.ratio':{
-                    	type: 'select',
-                    	action: 'apply_class',
-                    	show_empty: true,
-                    	name:'Aspect Ratio',
-                    	options: [
-                    		{key:'is-square',name:'Square'},
-                    		{key:'is-1by1',name:'1x1'},
-                    		{key:'is-4by3',name:'4x3'},
-                    		{key:'is-3by2',name:'3x2'},
-                    		{key:'is-16by9',name:'16x9'},
-                    		{key:'is-2by1',name:'2x1'}
-                    	]
+                        type: 'select',
+                        action: 'apply_class',
+                        show_empty: true,
+                        name:'Aspect Ratio',
+                        options: [
+                            {key:'is-square',name:'Square'},
+                            {key:'is-1by1',name:'1x1'},
+                            {key:'is-4by3',name:'4x3'},
+                            {key:'is-3by2',name:'3x2'},
+                            {key:'is-16by9',name:'16x9'},
+                            {key:'is-2by1',name:'2x1'}
+                        ]
                     }
                 }
             }
@@ -1200,26 +1215,26 @@ f.addComponentType(mediaobject);
                     
                 },
                 'Bulma.notification.button':{
-                	type:'checkbox',
-                	name:'Button?',
-                	value: 1,
-                	action: 'custom',
-                	get_value: function (pgel) {
-                    		return pgel.find('button.delete').length > 0 ? "1" : null;
-                    	},
-                    	set_value: function (pgel, value, values, oldValue, eventType) {
-                    		crsaWillChangeDom();
-                    		var pgb = pgel.findOne('button.delete');
-                    		if (value) {
-                    			if (!pgb) {
-                    				pgb = pgCreateNodeFromHtml('<button class="delete"></button>').html('');
-                    				pgel.prepend(pgb);
-  		            			}
-                    		} else {
-                    			pgb.remove();
-                    		}
-                    		return value;
-                    	}
+                    type:'checkbox',
+                    name:'Button?',
+                    value: 1,
+                    action: 'custom',
+                    get_value: function (pgel) {
+                            return pgel.find('button.delete').length > 0 ? "1" : null;
+                        },
+                        set_value: function (pgel, value, values, oldValue, eventType) {
+                            crsaWillChangeDom();
+                            var pgb = pgel.findOne('button.delete');
+                            if (value) {
+                                if (!pgb) {
+                                    pgb = pgCreateNodeFromHtml('<button class="delete"></button>').html('');
+                                    pgel.prepend(pgb);
+                                }
+                            } else {
+                                pgb.remove();
+                            }
+                            return value;
+                        }
                 }
             }
         }
@@ -1232,12 +1247,12 @@ f.addComponentType(mediaobject);
         table.selector = '.table';
         table.parent_selector = 'body';
         table.action_menu = {
-        	add: ['Bulma.row'],
-        	'on_add' : function(pgel, pgnew, newdef,prepend){
-        		var pgtbody = pgel.findOne('> tbody');
-        		var pgul = pgel.findOne('> tbody > tr');        		
-        		pgtbody.append(pgul.clone());
-        	}
+            add: ['Bulma.row'],
+            'on_add' : function(pgel, pgnew, newdef,prepend){
+                var pgtbody = pgel.findOne('> tbody');
+                var pgul = pgel.findOne('> tbody > tr');                
+                pgtbody.append(pgul.clone());
+            }
         }; 
         table.code = '<table class="table">\
   <thead>\
@@ -1299,41 +1314,41 @@ f.addComponentType(mediaobject);
       <td>Qualification for the <a href="https://en.wikipedia.org/wiki/2016%E2%80%9317_UEFA_Champions_League#Group_stage" title="2016–17 UEFA Champions League">Champions League group stage</a></td>\
     </tr></tbody></table>';
     table.sections = {
-    	'Bulma.table':{
-    		name: 'Table options',
-    		fields: {
-    			'Bulma.table.border' : {
-    				type: 'checkbox',
-    				name:'Bordered?',
-    				action: 'apply_class',
-    				value: 'is-bordered'
-    			},
-    			'Bulma.table.stripes' :{
-    				type:'checkbox',
-    				name:'Stripes?',
-    				action: 'apply_class',
-    				value:'is-striped'
-    			},
-    			'Bulma.table.narrow' :{
-    				type:'checkbox',
-    				name:'Narrow?',
-    				action: 'apply_class',
-    				value:'is-narrow'
-    			},
-    			'Bulma.table.hover' :{
-    				type:'checkbox',
-    				name:'Hover?',
-    				action: 'apply_class',
-    				value:'is-hoverable'
-    			},
-    			'Bulma.table.fullwidth' :{
-    				type:'checkbox',
-    				name:'Full Width?',
-    				action: 'apply_class',
-    				value:'is-fullwidth'
-    			}
-    		}
-    	}
+        'Bulma.table':{
+            name: 'Table options',
+            fields: {
+                'Bulma.table.border' : {
+                    type: 'checkbox',
+                    name:'Bordered?',
+                    action: 'apply_class',
+                    value: 'is-bordered'
+                },
+                'Bulma.table.stripes' :{
+                    type:'checkbox',
+                    name:'Stripes?',
+                    action: 'apply_class',
+                    value:'is-striped'
+                },
+                'Bulma.table.narrow' :{
+                    type:'checkbox',
+                    name:'Narrow?',
+                    action: 'apply_class',
+                    value:'is-narrow'
+                },
+                'Bulma.table.hover' :{
+                    type:'checkbox',
+                    name:'Hover?',
+                    action: 'apply_class',
+                    value:'is-hoverable'
+                },
+                'Bulma.table.fullwidth' :{
+                    type:'checkbox',
+                    name:'Full Width?',
+                    action: 'apply_class',
+                    value:'is-fullwidth'
+                }
+            }
+        }
     };
      f.addComponentType(table);
 
@@ -1355,29 +1370,30 @@ f.addComponentType(mediaobject);
                         name: 'Progress'
                 },
                 'Bulma.progress.max' :{
-                	type : 'text',
+                    type : 'text',
                     action: 'element_attribute',
                     attribute: 'max',
                     name: 'Max'
                 },
                 'Bulma.progress.color':{
-                	type:'select',
-                	action: 'apply_class',
-                	name:'Color',
-                	toggle_buttons: true,
-                	show_empty: true,
-                	options: bgColorOptions
+                    type:'select',
+                    action: 'apply_class',
+                    name:'Color',
+                    toggle_buttons: true,
+                    show_empty: true,
+                    options: bgColorOptions
                 },
                 'Bulma.progress.size':{
-                	type: 'select',
-                	action: 'apply_class',
-                	name: 'Size',
-                	show_empty: true,
-                	options: [
-                		{key:'is-small',name:'Small'},
-                		{key:'is-medium',name:'Medium'},
-                		{key:'is-large',name:'Large'},
-                	]
+                    type: 'select',
+                    action: 'apply_class',
+                    name: 'Size',
+                    show_empty: true,
+                    toggle_buttons: true,
+                    options: [
+                       {key: 'is-small', name: "Small", html: bm.makeText('S')},
+                    {key: 'is-medium', name: "Medium", html: bm.makeText('M')},
+                    {key: 'is-large', name: "Large", html: bm.makeText('L')}
+                    ]
                 }
             }
         }
@@ -1395,35 +1411,36 @@ f.addComponentType(mediaobject);
             'Bulma.title' : {
                 name : 'Title options',
                 fields : {
-                	'Bulma.title.type':{
-                		type:'select',
-                		action:'apply_class',
-                		name:'Type',
-                		show_empty: false,
-                		options: [
-                			{key:'title',name:'Title'},
-                			{key:'subtitle',name:'Sub Title'},
-                		]
-                	},
+                    'Bulma.title.type':{
+                        type:'select',
+                        action:'apply_class',
+                        name:'Type',
+                        show_empty: false,
+                        toggle_buttons: true,
+                        options: [
+                            {key:'title',name:'Title', html: bm.makeIcon('ikone1-100-copy-63')},
+                            {key:'subtitle',name:'Sub Title', html: bm.makeIcon('style_bold')}
+                        ]
+                    },
                  'Bulma.title.size':{
-                	type:'select',
-                	action: 'apply_class',
-                	name:'Size',
-                	show_empty: true,
-                	options: [
-                		{key:'is-1',name:'Huge'},
-                		{key:'is-2',name:'Big'},
-                		{key:'is-3',name:'Default'},
-                		{key:'is-4',name:'Medium'},
-                		{key:'is-5',name:'Small'},
-                		{key:'is-6',name:'Tiny'},
-                	]
+                    type:'select',
+                    action: 'apply_class',
+                    name:'Size',
+                    show_empty: true,
+                    options: [
+                        {key:'is-1',name:'Huge'},
+                        {key:'is-2',name:'Big'},
+                        {key:'is-3',name:'Default'},
+                        {key:'is-4',name:'Medium'},
+                        {key:'is-5',name:'Small'},
+                        {key:'is-6',name:'Tiny'},
+                    ]
                 },
                 'Bulma.title.spaced':{
-                	type: 'checkbox',
-                	action: 'apply_class',
-                	name: 'Spaced?',
-                	value: 'is-spaced'
+                    type: 'checkbox',
+                    action: 'apply_class',
+                    name: 'Spaced?',
+                    value: 'is-spaced'
                 }
             }
         }
@@ -1441,12 +1458,12 @@ f.addComponentType(mediaobject);
             'Bulma.modal' : {
                 name : 'Modal options',
                 fields : {
-                	'Bulma.modal.active':{
-                		type:'checkbox',
-                		name:'Active?',
-                		value:'is-active',
-                		action: 'apply_class'
-                	}
+                    'Bulma.modal.active':{
+                        type:'checkbox',
+                        name:'Active?',
+                        value:'is-active',
+                        action: 'apply_class'
+                    }
                 }
             }
         };
@@ -1464,17 +1481,18 @@ f.addComponentType(mediaobject);
             'Bulma.content' : {
                 name : 'Content options',
                 fields : {
-                	'Bulma.content.size':{
-                		type:'select',
-                		name:'Size',
-                		show_empty: true,
-                		action: 'apply_class',
-                		options: [
-                			{key:'is-small',name:'Small'},
-                			{key:'is-medium',name:'Medium'},
-                			{key:'is-large',name:'Large'},
-                		]
-                	}
+                    'Bulma.content.size':{
+                        type:'select',
+                        name:'Size',
+                        show_empty: true,
+                        toggle_buttons: true,
+                        action: 'apply_class',
+                        options: [
+                            {key: 'is-small', name: "Small", html: bm.makeText('S')},
+                            {key: 'is-medium', name: "Medium", html: bm.makeText('M')},
+                            {key: 'is-large', name: "Large", html: bm.makeText('L')}
+                        ]
+                    }
                 }
             }
         };
@@ -1490,36 +1508,36 @@ f.addComponentType(mediaobject);
             'Bulma.navbar' : {
                 name : 'Navbar options',
                 fields : {
-                	'Bulma.navbar.transparent':{
-                		type:'checkbox',
-                		value:'is-transparent',
-                		action:'apply_class',
-                		name:'Transparent?'
-                	},
+                    'Bulma.navbar.transparent':{
+                        type:'checkbox',
+                        value:'is-transparent',
+                        action:'apply_class',
+                        name:'Transparent?'
+                    },
                     'Bulma.navbar.shadow':{
                         type:'checkbox',
                         value:'has-shadow',
                         action:'apply_class',
                         name:'Shadow?'
                     },
-                	'Bulma.navbar.fixed':{
-                		type:'select',
-                		action:'apply_class',
-                		name:'Fixed',
-                		show_empty: true,
-                		options: [
-                			{key:'is-fixed-top',name:'Fixed Top'},
-                			{key:'is-fixed-bottom',name:'Fixed Bottom'},
-                		]
-                	},
-                	'Bulma.navbar.color':{
-                		type:'select',
-                		action:'apply_class',
-                		name:'Background',
-                		toggle_buttons: true,
-                		show_empty: true,
-                		options: bgColorOptions
-                	}
+                    'Bulma.navbar.fixed':{
+                        type:'select',
+                        action:'apply_class',
+                        name:'Fixed',
+                        show_empty: true,
+                        options: [
+                            {key:'is-fixed-top',name:'Fixed Top'},
+                            {key:'is-fixed-bottom',name:'Fixed Bottom'},
+                        ]
+                    },
+                    'Bulma.navbar.color':{
+                        type:'select',
+                        action:'apply_class',
+                        name:'Background',
+                        toggle_buttons: true,
+                        show_empty: true,
+                        options: bgColorOptions
+                    }
                 }
             }
         };
@@ -1534,30 +1552,30 @@ f.addComponentType(mediaobject);
             'Bulma.navbarItem' : {
                 name : 'Navbar Item options',
                 fields : {
-                	'Bulma.navbarItem.display' :{
-                		type:'select',
-                		name:'Dropdown Display',
-                		action:'apply_class',
-                		show_empty: true,
-                		options: [
-                			{key:'is-hoverable',name:'Hoverable'},
-                			{key:'is-active',name:'Active'},
-                		]
-                	},
-                	'Bulma.navbarItem.dropdownDirection':{
-                		type:'checkbox',
-                		name:'Dropup?',
-                		value:'has-dropdown-up',
-                		action:'apply_class',
-                		show_if: 'has-dropdown'
-                	},
-                	'Bulma.navbarItem.state':{
-                		type:'checkbox',
-                		name:'Active?',
-                		value:'is-active',
-                		action:'apply_class',
-                		show_if: 'has-dropdown'
-                	}
+                    'Bulma.navbarItem.display' :{
+                        type:'select',
+                        name:'Dropdown Display',
+                        action:'apply_class',
+                        show_empty: true,
+                        options: [
+                            {key:'is-hoverable',name:'Hoverable'},
+                            {key:'is-active',name:'Active'},
+                        ]
+                    },
+                    'Bulma.navbarItem.dropdownDirection':{
+                        type:'checkbox',
+                        name:'Dropup?',
+                        value:'has-dropdown-up',
+                        action:'apply_class',
+                        show_if: 'has-dropdown'
+                    },
+                    'Bulma.navbarItem.state':{
+                        type:'checkbox',
+                        name:'Active?',
+                        value:'is-active',
+                        action:'apply_class',
+                        show_if: 'has-dropdown'
+                    }
                 }
             }
         }
@@ -1572,18 +1590,18 @@ f.addComponentType(mediaobject);
             'Bulma.navbarDropdown' : {
                 name : 'Navbar dropdown options',
                 fields : {
-                	'Bulma.navbarDropdown.dropdownPosition':{
-                		type:'checkbox',
-                		name:'Right Dropdown?',
-                		value:'is-right',
-                		action:'apply_class'
-                	},
-                	'Bulma.navbarDropdown.boxed':{
-                		type:'checkbox',
-                		name:'Boxed dropdown?',
-                		value:'is-boxed',
-                		action:'apply_class'
-                	}
+                    'Bulma.navbarDropdown.dropdownPosition':{
+                        type:'checkbox',
+                        name:'Right Dropdown?',
+                        value:'is-right',
+                        action:'apply_class'
+                    },
+                    'Bulma.navbarDropdown.boxed':{
+                        type:'checkbox',
+                        name:'Boxed dropdown?',
+                        value:'is-boxed',
+                        action:'apply_class'
+                    }
                 }
             }
         }
@@ -1591,7 +1609,7 @@ f.addComponentType(mediaobject);
 
 
         // pagination
-		var pagination = new PgComponentType('Bulma.pagination','Pagination');
+        var pagination = new PgComponentType('Bulma.pagination','Pagination');
         pagination.code='<nav class="pagination" role="navigation" aria-label="pagination">\
   <a class="pagination-previous">Previous</a>\
   <a class="pagination-next">Next page</a>\
@@ -1626,33 +1644,35 @@ f.addComponentType(mediaobject);
             'Bulma.pagination' : {
                 name : 'Pagination options',
                 fields : {
-                	'Bulma.pagination.rounded':{
-                		type:'checkbox',
-                		name:'Rounded?',
-                		value: 'is-rounded',
-                		action: 'apply_class',
-                	},
-                	'Bulma.pagination.size':{
-                		type:'select',
-                		name:'Size',
-                		action:'apply_class',
-                		show_empty: true,
-                		options: [
-                			{key:'is-small',name:'Small'},
-                			{key:'is-medium',name:'Medium'},
-                			{key:'is-large',name:'Large'},
-                		]
-                	},
-                	'Bulma.pagination.alignment':{
-                		type:'select',
-                		name:'Align',
-                		action:'apply_class',
-                		show_empty: true,
-                		options: [
-                			{key:'is-centered',name:'Centered'},
-                			{key:'is-right',name:'Right'}
-                		]
-                	}
+                    'Bulma.pagination.rounded':{
+                        type:'checkbox',
+                        name:'Rounded?',
+                        value: 'is-rounded',
+                        action: 'apply_class',
+                    },
+                    'Bulma.pagination.size':{
+                        type:'select',
+                        name:'Size',
+                        action:'apply_class',
+                        show_empty: true,
+                        toggle_buttons: true,
+                        options: [
+                            {key: 'is-small', name: "Small", html: bm.makeText('S')},
+                            {key: 'is-medium', name: "Medium", html: bm.makeText('M')},
+                            {key: 'is-large', name: "Large", html: bm.makeText('L')}
+                        ]
+                    },
+                    'Bulma.pagination.alignment':{
+                        type:'select',
+                        name:'Align',
+                        action:'apply_class',
+                        show_empty: true,
+                        toggle_buttons: true,
+                        options: [
+                            {key:'is-centered',name:'Centered', html: bm.makeIcon('align-center')},
+                            {key:'is-right',name:'Right', html: bm.makeIcon('align-right')}
+                        ]
+                    }
                 }
             }
         };
@@ -1660,7 +1680,7 @@ f.addComponentType(mediaobject);
 
 
         // pagination link
-		var paginationLink = new PgComponentType('Bulma.paginationLink','Pagination Link');
+        var paginationLink = new PgComponentType('Bulma.paginationLink','Pagination Link');
         paginationLink.code='<li><a class="pagination-link is-current" aria-label="Page 1" aria-current="page">1</a></li>';
         paginationLink.selector = '.pagination-link,.pagination-previous, .pagination-next';
         paginationLink.parent_selector = '.pagination-list';
@@ -1669,34 +1689,34 @@ f.addComponentType(mediaobject);
             'Bulma.paginationLink' : {
                 name : 'paginationLink options',
                 fields : {
-                	'Bulma.paginationLink.number':{
-                		type:'text',
-                		name:'Page Number',
-                		action: 'custom',
-                		get_value: function (pgel) {
-                			var target = pgel.html();
-                    		return target.length > 0 ? target.substr(0,target.length):'';
-                    	},
-                    	set_value: function (pgel, value, values, oldValue, eventType) {
-                    		crsaWillChangeDom();
-                    		pgel.setAttr('aria-label','Goto page '+ value);
-                    		pgel.html(value);
-                    		return value;
-                    	}
-                	},
-                	'Bulma.paginationLink.active':{
-                		type:'checkbox',
-                		name:'Current?',
-                		value:'is-current',
-                		action: 'apply_class'
-                	},
-                	'Bulma.paginationLink.disabled':{
-                		type:'checkbox',
-                		name:'Disabled?',
-                		action: 'element_attribute',
-                    	attribute: 'disabled',
-                		value:'disabled'
-                	}
+                    'Bulma.paginationLink.number':{
+                        type:'text',
+                        name:'Page Number',
+                        action: 'custom',
+                        get_value: function (pgel) {
+                            var target = pgel.html();
+                            return target.length > 0 ? target.substr(0,target.length):'';
+                        },
+                        set_value: function (pgel, value, values, oldValue, eventType) {
+                            crsaWillChangeDom();
+                            pgel.setAttr('aria-label','Goto page '+ value);
+                            pgel.html(value);
+                            return value;
+                        }
+                    },
+                    'Bulma.paginationLink.active':{
+                        type:'checkbox',
+                        name:'Current?',
+                        value:'is-current',
+                        action: 'apply_class'
+                    },
+                    'Bulma.paginationLink.disabled':{
+                        type:'checkbox',
+                        name:'Disabled?',
+                        action: 'element_attribute',
+                        attribute: 'disabled',
+                        value:'disabled'
+                    }
                 }
             }
         };
@@ -1742,30 +1762,30 @@ f.addComponentType(mediaobject);
             'Bulma.dropdown' : {
                 name : 'dropdown options',
                 fields : {
-                	'Bulma.dropdown.active':{
-                		type:'checkbox',
-                		name:'Active?',
-                		value: 'is-active',
-                		action: 'apply_class'
-                	},
-                	'Bulma.dropdown.type':{
-                		type:'checkbox',
-                		name:'Hoverable?',
-                		value: 'is-hoverable',
-                		action: 'apply_class'
-                	},
-                	'Bulma.dropdown.align': {
-                		type: 'checkbox',
-                		name: 'Right aligned?',
-                		value: 'is-right',
-                		action: 'apply_class'
-                	},
-                	'Bulma.dropdown.direction': {
-                		type:'checkbox',
-                		name:'Drop up?',
-                		value:'is-up',
-                		action: 'apply_class'
-                	},
+                    'Bulma.dropdown.active':{
+                        type:'checkbox',
+                        name:'Active?',
+                        value: 'is-active',
+                        action: 'apply_class'
+                    },
+                    'Bulma.dropdown.type':{
+                        type:'checkbox',
+                        name:'Hoverable?',
+                        value: 'is-hoverable',
+                        action: 'apply_class'
+                    },
+                    'Bulma.dropdown.align': {
+                        type: 'checkbox',
+                        name: 'Right aligned?',
+                        value: 'is-right',
+                        action: 'apply_class'
+                    },
+                    'Bulma.dropdown.direction': {
+                        type:'checkbox',
+                        name:'Drop up?',
+                        value:'is-up',
+                        action: 'apply_class'
+                    },
                 }
             }
         };
@@ -1792,12 +1812,13 @@ f.addComponentType(mediaobject);
                     'Bulma.formInput.size':{
                         type:'select',
                         action: 'apply_class',
+                        toggle_buttons: true,
+                        show_empty: true,
                         name: 'Size',
                         options: [
-                            {key:'is-small',name:'Small'},
-                            {key:'',name:'Normal'},
-                            {key:'is-medium',name:'Medium'},
-                            {key:'is-large',name:'Large'}
+                            {key: 'is-small', name: "Small", html: bm.makeText('S')},
+                            {key: 'is-medium', name: "Medium", html: bm.makeText('M')},
+                            {key: 'is-large', name: "Large", html: bm.makeText('L')}
                         ]
                     },
                     'Bulma.formInput.rounded':{
@@ -1862,11 +1883,12 @@ f.addComponentType(mediaobject);
                         type:'select',
                         action: 'apply_class',
                         name: 'Size',
+                        toggle_buttons: true,
+                        show_empty: true,
                         options: [
-                            {key:'is-small',name:'Small'},
-                            {key:'',name:'Normal'},
-                            {key:'is-medium',name:'Medium'},
-                            {key:'is-large',name:'Large'},
+                            {key: 'is-small', name: "Small", html: bm.makeText('S')},
+                            {key: 'is-medium', name: "Medium", html: bm.makeText('M')},
+                            {key: 'is-large', name: "Large", html: bm.makeText('L')}
                         ]
                     }
 
