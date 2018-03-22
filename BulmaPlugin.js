@@ -691,7 +691,7 @@ f.addComponentType(mediaobject);
                             return value;
                         }
                     },
-                    'footer': {
+                    'Bulma.footer': {
                         type: 'checkbox',
                         value: 1,
                         name: 'Footer?',
@@ -700,11 +700,10 @@ f.addComponentType(mediaobject);
                             return pgel.find('div.hero-foot').length > 0 ? "1" : null;
                         },
                         set_value: function (pgel, value, values, oldValue, eventType) {
-                            crsaWillChangeDom();
                             var pgb = pgel.findOne('div.hero-foot');
                             if (value) {
                                 if (!pgb) {
-                                    pgb = pgCreateNodeFromHtml('<div class="hero-foot"></div>').html('<div class="hero-foot"><nav class="tabs"><div class="container"><ul><li class="is-active"><a>Overview</a></li><li><a>Modifiers</a></li><li><a>Grid</a></li><li><a>Elements</a></li><li><a>Components</a></li><li><a>Layout</a></li></ul></div></nav></div>');
+                                    pgb = pgCreateNodeFromHtml('<div class="hero-foot"></div>').html('<nav class="tabs"><div class="container"><ul><li class="is-active"><a>Overview</a></li><li><a>Modifiers</a></li><li><a>Grid</a></li><li><a>Elements</a></li><li><a>Components</a></li><li><a>Layout</a></li></ul></div></nav>');
                                     pgel.append(pgb);
                                 }
                             } else {
@@ -836,10 +835,33 @@ f.addComponentType(mediaobject);
                             }
                             return value;
                         }
-                    }
+                    },
+						footer: {
+							type: 'checkbox',
+							name: 'Footer?',
+							value: 1,
+							action: 'custom',
+								get_value: function (pgel) {
+										 return pgel.find('footer.card-footer').length > 0 ? "1" : null;
+									},
+									set_value: function (pgel, value, values, oldValue, eventType) {
+										 //crsaWillChangeDom();
+										 var pgb = pgel.findOne('footer.card-footer');
+										 if (value) {
+											  if (!pgb) {
+													pgb = pgCreateNodeFromHtml('<footer class="card-footer"></footer>').html('<a href="#" class="card-footer-item">Save</a><a href="#" class="card-footer-item">Edit</a><a href="#" class="card-footer-item">Delete</a>');
+													pgel.append(pgb);
+											  }
+										 } else {
+											  pgb.remove();
+										 }
+										 return value;
+									}
+							}
                 }
             }
-        }
+  			}
+        
     });
     f.addComponentType(card);
 
