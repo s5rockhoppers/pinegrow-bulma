@@ -35,7 +35,7 @@ Currently in alpha stage and not complete.
 * [Title](https://bulma.io/documentation/elements/title/)
 * [Form Input](https://bulma.io/documentation/form/input/)
 * [Form Control](https://bulma.io/documentation/form/general/)
-* [Form Field] (https://bulma.io/documentation/form/general/)
+* [Form Field](https://bulma.io/documentation/form/general/)
 
 Not all options are available on every element but I am working towards that.
 
