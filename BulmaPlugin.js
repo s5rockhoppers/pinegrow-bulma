@@ -93,9 +93,9 @@ $(function() {
                         toggle_buttons: true,
                         name: 'Button size',
                         options: [
-                            {key: 'is-small', name: "Small",html: bm.makeText('S',       { attributes: { 'title': 'Small'  } })},
-                            {key: 'is-medium', name: "Medium",html: bm.makeText('M',       { attributes: { 'title': 'Medium'  } })},
-                            {key: 'is-large', name: "Large",html: bm.makeText('L',       { attributes: { 'title': 'Large'  } })}
+                            {key: 'is-small', name: "Small",html: bm.makeText('S',{ attributes: { 'title': 'Small'  } })},
+                            {key: 'is-medium', name: "Medium",html: bm.makeText('M',{ attributes: { 'title': 'Medium'  } })},
+                            {key: 'is-large', name: "Large",html: bm.makeText('L',{ attributes: { 'title': 'Large'  } })}
                         ]
                     },
                     'Bulma.button.color' : {
@@ -137,10 +137,10 @@ $(function() {
                         toggle_buttons: true,
                         name: 'Button State',
                         options: [
-                            {key: 'is-active', name: 'Active', html: bm.makeText('Active',       { attributes: { 'title': 'Active'  } })},
-                            {key: 'is-hovered', name: 'Hovered', html: bm.makeText('Hover',       { attributes: { 'title': 'Hovered'  } })},
-                            {key: 'is-focused', name: 'Focused', html: bm.makeText('Focus',       { attributes: { 'title': 'Focused'  } })},
-                            {key: 'is-loading', name: 'Loading', html: bm.makeText('Load',       { attributes: { 'title': 'Loading'  } })}
+                            {key: 'is-active', name: 'Active', html: bm.makeText('Active',{ attributes: { 'title': 'Active'  } })},
+                            {key: 'is-hovered', name: 'Hovered', html: bm.makeText('Hover',{ attributes: { 'title': 'Hovered'  } })},
+                            {key: 'is-focused', name: 'Focused', html: bm.makeText('Focus',{ attributes: { 'title': 'Focused'  } })},
+                            {key: 'is-loading', name: 'Loading', html: bm.makeText('Load',{ attributes: { 'title': 'Loading'  } })}
                         ]
                     },
                     'Bulma.button.disabled' :{
@@ -149,12 +149,120 @@ $(function() {
                         attribute: 'disabled',
                         name: 'Disabled?',
                         value: 'disabled'
-                    }
-                    
+                    }                    
                 }
             }
         };
         f.addComponentType(button);
+
+        // button group
+        var buttons = new PgComponentType('Bulma.buttons','Buttons');
+        buttons.selector = 'div.buttons';
+        buttons.action_menu = {
+            add: ['Bulma.button']
+        };
+        buttons.code='<div class="buttons"><button class="button">One</button><button class="button">Two</button></div>';
+        buttons.sections = {
+            'Bulma.buttons': {
+                name: 'Buttons Options',
+                fields:{
+                    'Bulma.buttons.addons' :{
+                        name: 'Addons?',
+                        type:'checkbox',
+                        value: 'has-addons',
+                        action: 'apply_class'
+                    },
+                    'Bulma.buttons.position':{
+                        name:'Addon Position',
+                        type: 'select',
+                        show_empty: true,
+                        toggle_buttons: true,
+                        action: 'apply_class',
+                        options: [
+                            {key:'',name:'Left',html: bm.makeIcon('float-left')},
+                            {key:'is-centered',name:'Right',html: bm.makeIcon('float')},
+                            {key:'is-right',name:'Right',html: bm.makeIcon('float-right')},
+                        ]
+                    }
+                }
+            }
+        };
+        f.addComponentType(buttons);
+
+
+        // tags
+        var tags = new PgComponentType('Bulma.tags','Tags');
+        tags.selector = 'div.tags';
+        tags.action_menu = {
+            add: ['Bulma.tag']
+        };
+        tags.code='<div class="tags"><span class="tag">One</span><span class="tag">Two</span></div>';
+        tags.sections = {
+            'Bulma.tags' : {
+                name:'Tags Options',
+                fields :{
+                    'Bulma.tags.hasaddons' :{
+                        type:'checkbox',
+                        name: 'Has Addons?',
+                        value: 'has-addons',
+                        action: 'apply_class'
+                    }
+
+                }
+            }
+        };
+        f.addComponentType(tags);
+
+        // tag
+        var tag = new PgComponentType('Bulma.tag','Tag');
+        tag.selector = '.tag';
+        tag.parent_selector = 'span, a';
+        tag.code='<span class="tag">Tag Label</span>';
+        tag.tags = 'major';
+        tag.sections = {
+            'Bulma.tag' :{
+                name: 'Tag Options' ,
+                    fields : {
+                        'Bulma.tag.text' :{
+                            type: 'text',
+                            name: 'Label',
+                            action: 'element_html'
+                        },
+                        'Bulma.tag.color' : {
+                            type: 'select',
+                            name: 'Color',
+                            options : bgColorOptions,
+                            toggle_buttons: true,
+                            show_empty: true,
+                            action: 'apply_class'
+                        },
+                        'Bulma.tag.size' :{
+                            type: 'select',
+                            name: 'Size',
+                            options: [
+                                {key:'is-medium',name:'Medium',html: bm.makeText('M')},
+                                {key:'is-large',name:'Large',html: bm.makeText('L')},
+                            ],
+                            action: 'apply_class',
+                            toggle_buttons: true,
+                            show_empty: true
+                        },
+                        'Bulma.tag.rounded':{
+                            type:'checkbox',
+                            name:'Rounded?',
+                            action: 'apply_class',
+                            value: 'is-rounded'
+                        },
+                        'Bulma.tag.delete' :{
+                            type:'checkbox',
+                            name:'Delete?',
+                            action: 'apply_class',
+                            value:'is-delete'
+                        }
+                    }
+                }
+            };
+        f.addComponentType(tag);
 
         //Column
         var column = new PgComponentType('Bulma.column', 'Column');
@@ -401,12 +509,38 @@ $(function() {
         f.addComponentType(level);
 
         // level item
-        var levelitem = new PgComponentType("Bulma.levelitem","Level Item");
-        levelitem.selector = '.level-item';
+        var levelitem = new PgComponentType("Bulma.levelitem", "Level Item");
+		levelitem.selector = '.level-item';
         levelitem.parent_selector = '.level, .level-right, .level-left';
         levelitem.code = '<div class="level-item"><p>Item contents</p></div>';
-        f.addComponentType(levelitem);
+	   f.addComponentType(levelitem);
 
+        // delete
+        var deleteElement = new PgComponentType("Bulma.delete","Delete");
+        deleteElement.selector = 'a.delete, button.delete, span.delete';
+        deleteElement.code = '<a class="delete"></a>';
+        deleteElement.sections = {
+            'Bulma.delete': {
+                name: 'Delete options',
+                fields: {
+                    'Size' :{
+                        type: 'select',
+                        toggle_buttons: true,
+                        show_empty: true,
+                        options: [
+                            {key:'is-small',name:'Small',html: bm.makeText('S')},
+                            {key:'is-medium',name:'Medium',html: bm.makeText('M')},
+                            {key:'is-large',name:'Large',html: bm.makeText('L')},
+                        ],
+                        action: 'apply_class',
+                        name: 'Size'
+                    }
+                }
+            }
+        };
+       f.addComponentType(deleteElement);
+
+        
         // footer
         var footer = new PgComponentType("Bulma.footer","Footer");
         footer.selector = '.footer';
@@ -423,7 +557,7 @@ $(function() {
 
         // breadcrumb link
         var breadcrumbLink = new PgComponentType("Bulma.breadcrumbLink","Breadcrumb Link");
-        breadcrumbLink.selector = 'nav.breadcrumb>ul>li';
+        breadcrumbLink.selector = 'li';
         breadcrumbLink.parent_selector = 'nav.breadcrumb>ul';
         breadcrumbLink.code = '<li class="is-active"><a href="#">Link Item</a></li>';
         breadcrumbLink.sections = {
@@ -438,9 +572,28 @@ $(function() {
                     }
                 }
             }
-        }
+        };
         f.addComponentType(breadcrumbLink);
 
+        // breadcrumb icon link
+        var breadcrumbIconLink = new PgComponentType("Bulma.breadcrumbIconLink","Breadcrumb Icon Link");
+        breadcrumbIconLink.selector = 'nav.breadcrumb>ul>li';
+        breadcrumbIconLink.parent_selector = '.breadcrumb>ul';
+        breadcrumbIconLink.code = '<li class="is-active"><a href="#" aria-current="page"><span class="icon is-small"><i class="fas fa-thumbs-up" aria-hidden="true"></i></span><span>Breadcrumb</span></a></li>';
+        breadcrumbIconLink.sections = {
+            'Bulma.breadcrumbIconLink': {
+                name: 'Item Options',
+                fields: {
+                    'Active' :{
+                        type:'checkbox',
+                        name: 'Active?',
+                        value:'is-active',
+                        action:'apply_class'
+                    }
+                }
+            }
+        };
+        f.addComponentType(breadcrumbIconLink);
 
         // menu
         var menu = new PgComponentType("Bulma.menu","Menu");
@@ -571,10 +724,10 @@ f.addComponentType(mediaobject);
         var breadcrumb = new PgComponentType('Bulma.breadcrumb', 'Breadcrumbs');
         breadcrumb.selector = '.breadcrumb';
         breadcrumb.parent_selector = 'body';
-        breadcrumb.code = '<nav class="breadcrumb" aria-label="breadcrumbs"><ul><li><a href="#"><span class="icon is-small"><i class="fas fa-home"></i></span><span>Bulma</span></a></li><li><a href="#">Documentation</a></li><li><a href="#">Components</a></li><li class="is-active"><a href="#" aria-current="page">Breadcrumb</a></li></ul></nav';
+        breadcrumb.code = '<nav class="breadcrumb" aria-label="breadcrumbs"><ul><li><a href="#"><span class="icon is-small"><i class="fas fa-home"></i></span><span>Bulma</span></a></li><li><a href="#">Documentation</a></li><li><a href="#">Components</a></li><li class="is-active"><a href="#" aria-current="page">Breadcrumb</a></li></ul></nav>';
         breadcrumb.tags = 'major';
         breadcrumb.action_menu = {
-            add: ['Bulma.breadcrumbLink'],
+            add: ['Bulma.breadcrumbLink','Bulma.breadcrumbIconLink'],
             'on_add' : function(pgel, pgnew, newdef,prepend){
                 var pgul = pgel.findOne('> ul');
                 if (!pgul){
@@ -836,31 +989,31 @@ f.addComponentType(mediaobject);
                             return value;
                         }
                     },
-						footer: {
-							type: 'checkbox',
-							name: 'Footer?',
-							value: 1,
-							action: 'custom',
-								get_value: function (pgel) {
-										 return pgel.find('footer.card-footer').length > 0 ? "1" : null;
-									},
-									set_value: function (pgel, value, values, oldValue, eventType) {
-										 //crsaWillChangeDom();
-										 var pgb = pgel.findOne('footer.card-footer');
-										 if (value) {
-											  if (!pgb) {
-													pgb = pgCreateNodeFromHtml('<footer class="card-footer"></footer>').html('<a href="#" class="card-footer-item">Save</a><a href="#" class="card-footer-item">Edit</a><a href="#" class="card-footer-item">Delete</a>');
-													pgel.append(pgb);
-											  }
-										 } else {
-											  pgb.remove();
-										 }
-										 return value;
-									}
-							}
+                        footer: {
+                            type: 'checkbox',
+                            name: 'Footer?',
+                            value: 1,
+                            action: 'custom',
+                                get_value: function (pgel) {
+                                         return pgel.find('footer.card-footer').length > 0 ? "1" : null;
+                                    },
+                                    set_value: function (pgel, value, values, oldValue, eventType) {
+                                         //crsaWillChangeDom();
+                                         var pgb = pgel.findOne('footer.card-footer');
+                                         if (value) {
+                                              if (!pgb) {
+                                                    pgb = pgCreateNodeFromHtml('<footer class="card-footer"></footer>').html('<a href="#" class="card-footer-item">Save</a><a href="#" class="card-footer-item">Edit</a><a href="#" class="card-footer-item">Delete</a>');
+                                                    pgel.append(pgb);
+                                              }
+                                         } else {
+                                              pgb.remove();
+                                         }
+                                         return value;
+                                    }
+                            }
                 }
             }
-  			}
+            }
         
     });
     f.addComponentType(card);
@@ -903,15 +1056,16 @@ f.addComponentType(mediaobject);
                     },
                     textcase : {
                         type: 'select',
-                        action: 'apply_class',
+                        action: 'apply_class_multiple',
+                        multiple: true,
                         show_empty: true,
-                        toggle_buttons: true,
-                        name: 'Text Case',
+                       // toggle_buttons: true,
+                        name: 'Text Format',
                         options: [
-                            {key: 'is-uppercase',name:'Uppercase', html: bm.makeIcon('Transform-uppercase',       { attributes: { 'title': 'Uppercase'  } })},
-                            {key: 'is-lowercase',name:'Lowercase', html: bm.makeIcon('Transform-lowercase',       { attributes: { 'title': 'Lowercase'  } })},
-                            {key: 'is-capitalized',name:'Capitalized', html: bm.makeIcon('sentence-case',       { attributes: { 'title': 'Capitalized'  } })},
-                            {key: 'is-italic',name:'Italic', html: bm.makeIcon('style_italic',       { attributes: { 'title': 'Italic'  } })}
+                            {key: 'is-uppercase',name:'Uppercase'},
+                            {key: 'is-lowercase',name:'Lowercase'},
+                            {key: 'is-capitalized',name:'Capitalized'},
+                            {key: 'is-italic',name:'Italic'}
                         ]
                     },
                     alignment: {
@@ -963,15 +1117,16 @@ f.addComponentType(mediaobject);
                         toggle_buttons: true,
                         name: 'Float',
                         options: [
-                            {key: 'is-pulled-left',name:'Pull Left', html: bm.makeIcon('float-left',       { attributes: { 'title': 'Pull left'  } })},
-                            {key: 'is-clearfix',name:'Clear', html: bm.makeIcon('float',       { attributes: { 'title': 'Clear fix'  } })},
-                            {key: 'is-pulled-right',name:'Pull Right', html: bm.makeIcon('float-right',       { attributes: { 'title': 'Pull right'  } })}
+                            {key: 'is-pulled-left',name:'Pull Left', html: bm.makeIcon('float-left',{ attributes: { 'title': 'Pull left'  } })},
+                            {key: 'is-clearfix',name:'Clear', html: bm.makeIcon('float',{ attributes: { 'title': 'Clear fix'  } })},
+                            {key: 'is-pulled-right',name:'Pull Right', html: bm.makeIcon('float-right',{ attributes: { 'title': 'Pull right'  } })}
                         ]
                     },
                     margin: {
                         type: 'select',
-                        action: 'apply_class',
+                        action: 'apply_class_multiple',
                         show_empty: true,
+                        multiple: true,
                         name: 'Spacing',
                         options: [
                             {key: 'is-marginless',name:'No Margins'},
@@ -980,8 +1135,9 @@ f.addComponentType(mediaobject);
                     },
                     other: {
                         type: 'select',
-                        action: 'apply_class',
+                        action: 'apply_class_multiple',
                         show_empty: true,
+                        multiple: true,
                         name: 'Other',
                         options: [
                             {key: 'is-overlay',name:'Overlay'},
@@ -1155,9 +1311,22 @@ f.addComponentType(mediaobject);
 
         // table row
         var row = new PgComponentType("Bulma.row","Insert Row");
-        row.selector = 'tbody';
-        row.parent_selector = 'table';
+        row.selector = 'tr';
+        row.parent_selector = 'table, thead, tbody, tfoot';
         row.code = '<tr></tr>';
+        row.sections = {
+            'Bulma.row': {
+                name: 'Row options',
+                fields: {
+                    'Bulma.row.active' :{
+                        type: 'checkbox',
+                        value: 'is-selected',
+                        name: 'Selected?',
+                        action: 'apply_class'
+                    }
+                }
+            }
+        }
         f.addComponentType(row);
 
         // tab
@@ -1281,62 +1450,35 @@ f.addComponentType(mediaobject);
         table.code = '<table class="table">\
   <thead>\
     <tr>\
-      <th><abbr title="Position">Pos</abbr></th>\
-      <th>Team</th>\
-      <th><abbr title="Played">Pld</abbr></th>\
-      <th><abbr title="Won">W</abbr></th>\
-      <th><abbr title="Drawn">D</abbr></th>\
-      <th><abbr title="Lost">L</abbr></th>\
-      <th><abbr title="Goals for">GF</abbr></th>\
-      <th><abbr title="Goals against">GA</abbr></th>\
-      <th><abbr title="Goal difference">GD</abbr></th>\
-      <th><abbr title="Points">Pts</abbr></th>\
-      <th>Qualification or relegation</th>\
+      <th>Column 1</th>\
+      <th>Column 2</th>\
+      <th>Column 3</th>\
     </tr>\
   </thead>\
   <tfoot>\
     <tr>\
-      <th><abbr title="Position">Pos</abbr></th>\
-      <th>Team</th>\
-      <th><abbr title="Played">Pld</abbr></th>\
-      <th><abbr title="Won">W</abbr></th>\
-      <th><abbr title="Drawn">D</abbr></th>\
-      <th><abbr title="Lost">L</abbr></th>\
-      <th><abbr title="Goals for">GF</abbr></th>\
-      <th><abbr title="Goals against">GA</abbr></th>\
-      <th><abbr title="Goal difference">GD</abbr></th>\
-      <th><abbr title="Points">Pts</abbr></th>\
-      <th>Qualification or relegation</th>\
+      <th>Column 1</th>\
+      <th>Column 2</th>\
+      <th>Column 3</th>\
     </tr>\
   </tfoot>\
   <tbody>\
     <tr>\
-      <th>1</th>\
-      <td><a href="https://en.wikipedia.org/wiki/Leicester_City_F.C." title="Leicester City F.C.">Leicester City</a> <strong>(C)</strong>\
-      </td>\
-      <td>38</td>\
-      <td>23</td>\
-      <td>12</td>\
-      <td>3</td>\
-      <td>68</td>\
-      <td>36</td>\
-      <td>+32</td>\
-      <td>81</td>\
-      <td>Qualification for the <a href="https://en.wikipedia.org/wiki/2016%E2%80%9317_UEFA_Champions_League#Group_stage" title="2016–17 UEFA Champions League">Champions League group stage</a></td>\
+      <td>Data Item 1-1</td>\
+      <td>Data Item 1-2</td>\
+      <td>Data Item 1-3</td>\
     </tr>\
     <tr>\
-      <th>2</th>\
-      <td><a href="https://en.wikipedia.org/wiki/Arsenal_F.C." title="Arsenal F.C.">Arsenal</a></td>\
-      <td>38</td>\
-      <td>20</td>\
-      <td>11</td>\
-      <td>7</td>\
-      <td>65</td>\
-      <td>36</td>\
-      <td>+29</td>\
-      <td>71</td>\
-      <td>Qualification for the <a href="https://en.wikipedia.org/wiki/2016%E2%80%9317_UEFA_Champions_League#Group_stage" title="2016–17 UEFA Champions League">Champions League group stage</a></td>\
-    </tr></tbody></table>';
+      <td>Data Item 2-1</td>\
+      <td>Data Item 2-2</td>\
+      <td>Data Item 2-3</td>\
+    </tr>\
+    <tr>\
+      <td>Data Item 3-1</td>\
+      <td>Data Item 3-2</td>\
+      <td>Data Item 3-3</td>\
+    </tr>\
+    </tbody></table>';
     table.sections = {
         'Bulma.table':{
             name: 'Table options',
@@ -1987,6 +2129,12 @@ f.addComponentType(mediaobject);
         res.type = 'text/css';
         f.resources.add(res);
 
+		res = new PgComponentTypeResource('https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js');
+        res.type = 'application/javascript';
+        res.detect = /jquery/;
+        res.footer = true;
+        f.resources.add(res);
+
         //Tell Pinegrow about the framework
         //pinegrow.addFramework(f);
             
@@ -1995,9 +2143,9 @@ f.addComponentType(mediaobject);
         var elementSection = new PgFrameworkLibSection("Bulma_elements","Elements");
         var formSection = new PgFrameworkLibSection("Bulma_forms","Forms");
         //Pass components in array
-        componentSection.setComponentTypes([breadcrumb,card, cardHeader, cardFooter,dropdown,menu, message,modal,pagination, paginationLink, tabs ]);
+        componentSection.setComponentTypes([breadcrumb,breadcrumbLink, breadcrumbIconLink,card, cardHeader, cardFooter,dropdown,menu, message,modal,pagination, paginationLink, tabs ]);
         layoutSection.setComponentTypes([column, columns, container, footer, hero, level, levelitem, mediaobject,  navbar, navbarItem,navbarDropdown,section]);
-        elementSection.setComponentTypes([box,button,content,icon, image, notification, progress, table, title]);
+        elementSection.setComponentTypes([box,button, buttons,content, deleteElement, icon, image, notification, progress, table,tags, tag, title]);
         formSection.setComponentTypes([formInput, formControl, formField]);
 
         f.addLibSection(componentSection);
